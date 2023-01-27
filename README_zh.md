@@ -12,24 +12,29 @@
 
 ## 命令
 1. `/slots-checker inventory <玩家>`  
-    打开玩家的背包界面。
+    打开玩家的背包界面。  
+    ![](img/inventory.png)
 
 2. `/slots-checker hotbar <玩家>`  
-    打开玩家的快捷栏界面。
+    打开玩家的快捷栏界面。  
+    ![](img/hotbar.png) 
 
 3. `/slots-checker ender <玩家>`  
-    打开玩家的末影箱界面。
+    打开玩家的末影箱界面。  
+    ![](img/ender.png) 
 
 4. `/slots-checker armor <玩家>`  
-    打开玩家的盔甲槽界面。
+    打开玩家的盔甲槽界面。  
+    ![](img/armor.png) 
 
 5. `/slots-checker offhand <玩家>`  
-    打开玩家的副手槽界面。
+    打开玩家的副手槽界面。  
+    ![](img/offhand.png) 
 
 ## 协议
 MIT
 
-***
+## 关于
 作者：廖浩龙
 
 Email1 : aliaohaolong@qq.com  
