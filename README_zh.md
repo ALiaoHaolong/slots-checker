@@ -5,10 +5,11 @@
 注意：**服务端必装**，客户端选装。客户端安装后可提供少量翻译。
 
 ## 下载
-|文件名|MC版本|Fabric版本|前置mod|
-|---|---|---|---|
-|[slots-checker-mc1.19.2-server0.14.13-api0.73.0-1.0.jar](https://pan.baidu.com/s/1TiGdxntyAExpe3tuQFADFA?pwd=bqh2)|1.19.2|0.14.13+|fabric-api-0.73.0+1.19.2.jar|
-|[slots-checker-mc1.18.2-server0.14.12-api0.67.0-1.0.jar](https://pan.baidu.com/s/1BtAn8XJMeq98nQ1AYQL9iA?pwd=9vrf)|1.18.2|0.14.12+|fabric-api-0.67.0+1.18.2.jar|
+|文件名|MC版本|Fabric版本|前置mod|备注|
+|---|---|---|---|---|
+|[slots-checker-mc1.19.2-server0.14.9-api0.60.0-1.0.jar](https://pan.baidu.com/s/1EH1Zj-yCtzkwLop2x3JjpQ?pwd=o2hb)|1.19.2|0.14.9+|fabric-api-0.60.0+1.19.2.jar|低fabric版本支持|
+|[slots-checker-mc1.19.2-server0.14.13-api0.73.0-1.0.jar](https://pan.baidu.com/s/1TiGdxntyAExpe3tuQFADFA?pwd=bqh2)|1.19.2|0.14.13+|fabric-api-0.73.0+1.19.2.jar||
+|[slots-checker-mc1.18.2-server0.14.12-api0.67.0-1.0.jar](https://pan.baidu.com/s/1BtAn8XJMeq98nQ1AYQL9iA?pwd=9vrf)|1.18.2|0.14.12+|fabric-api-0.67.0+1.18.2.jar||
 
 ## 命令
 1. `/slots-checker inventory <玩家>`  
@@ -26,7 +27,7 @@
 4. `/slots-checker armor <玩家>`  
     打开玩家的盔甲槽界面。  
     前 4 个栏位依次为：靴子、护腿、胸甲、头盔；后 5 个栏位**无效**。  
-    此界面**没有**物品限制，任意物品均可直接放入盔甲栏位  
+    此界面**没有**物品限制，任意物品均可直接放入盔甲栏位。  
     ![](img/armor.png) 
 
 5. `/slots-checker offhand <玩家>`  
