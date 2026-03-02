@@ -29,6 +29,7 @@ Important:
 
 - **Required on the server, optional on the client.**
 - For the time being, it is **not supported** to view or modify the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
+- [Creative inventory problem](CreativeInventoryProblem.md).
 
 ## Commands
 
