@@ -1,0 +1,50 @@
+{
+	"schemaVersion": 1,
+	"id": "slots-checker",
+	"version": "${version}",
+	"name": "Slots Checker",
+	"description": "This mod provides a command to view and modify any player's inventory, hotbar, ender chest, armor, and offhand slots (requires level 4 admin privileges).",
+	"authors": [
+		{
+			"name": "廖浩龙",
+			"contact": {
+				"email": "aliaohaolong@qq.com"
+			}
+		}
+	],
+	"contributors": [
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/slots-checker",
+		"sources": "https://gitee.com/AnNight/slots-checker",
+		"issues": "https://gitee.com/AnNight/slots-checker/issues"
+	},
+	"license": "Apache-2.0",
+	"icon": "assets/slots-checker/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"pers.liaohaolong.slotschecker.SlotsChecker"
+		]
+	},
+	"mixins": [
+		"slots-checker.mixins.json"
+	],
+	"depends": {
+		"minecraft": ">=${minecraft_version}",
+		"fabricloader": ">=${loader_version}",
+		"fabric": "*",
+		"java": ">=17"
+	},
+	"suggests": {
+		"modmenu": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/slots-checker",
+				"slots-checker.mcmod": "https://www.mcmod.cn/class/8936.html"
+			}
+		}
+	}
+}

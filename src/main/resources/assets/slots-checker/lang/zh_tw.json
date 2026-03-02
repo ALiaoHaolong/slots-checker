@@ -1,0 +1,12 @@
+{
+  "container.ender_checker": "%s 的末影箱",
+  "container.hotbar_checker": "%s 的快捷欄",
+  "container.inventory_checker": "%s 的揹包",
+  "container.armor_checker": "%s 的盔甲",
+  "container.offhand_checker": "%s 的副手",
+
+  "modmenu.nameTranslation.slots-checker": "Slots Checker",
+  "modmenu.descriptionTranslation.slots-checker": "一個Fabric模組，為管理員提供了一組“/slots-checker”命令，以檢視並修改任意玩家的揹包（Inventory）、快捷欄（Hotbar）、末影箱（Ender Chest）、盔甲（Armor）和副手（Offhand）物品槽。",
+
+  "slots-checker.mcmod": "MC 百科"
+}

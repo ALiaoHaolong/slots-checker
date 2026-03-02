@@ -1,0 +1,12 @@
+{
+  "container.ender_checker": "%s 's Ender Chest",
+  "container.hotbar_checker": "%s 's Hotbar",
+  "container.inventory_checker": "%s 's Inventory",
+  "container.armor_checker": "%s 's Armor",
+  "container.offhand_checker": "%s 's Offhand",
+
+  "modmenu.nameTranslation.slots-checker": "Slots Checker",
+  "modmenu.descriptionTranslation.slots-checker": "A Fabric mod providing /slots-checker commands for admins to view and modify any player's inventory, hotbar, ender chest, armor, and offhand slots.",
+
+  "slots-checker.mcmod": "MC 百科"
+}

@@ -1,0 +1,86 @@
+import net.fabricmc.loom.task.RemapJarTask
+import net.fabricmc.loom.task.RemapSourcesJarTask
+
+plugins {
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+}
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+// Extend the processing of the minecraft_version and loader_version parameters to dynamically replace the variables in gradle.properties into fabric.mod.json.
+processResources {
+	inputs.property "version", project.version
+	inputs.property "minecraft_version", project.minecraft_version
+	inputs.property "loader_version", project.loader_version
+	filteringCharset "UTF-8"
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version,
+				"minecraft_version": project.minecraft_version,
+				"loader_version": project.loader_version
+	}
+}
+
+// Set up the Java compilation task.
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = "UTF-8"
+	it.options.release = 17
+}
+
+// Set up the Java plugins.
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+	withSourcesJar()
+}
+
+// Add LICENSE to the generated Jar package.
+jar {
+	from("LICENSE")
+}
+
+// Customize the file name of the main jar.
+tasks.named('remapJar', RemapJarTask) {
+	archiveFileName = "${project.archives_base_name}-fabric-${project.mod_version}-mc${project.minecraft_version}.jar"
+	input = jar.archiveFile
+}
+
+// Customize the file name of the sources jar.
+tasks.named('remapSourcesJar', RemapSourcesJarTask) {
+	archiveFileName = "${project.archives_base_name}-fabric-${project.mod_version}-mc${project.minecraft_version}-sources.jar"
+	input = tasks.sourcesJar.archiveFile
+}
+
+// Configure the publication. Not yet in use.
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+	}
+}
