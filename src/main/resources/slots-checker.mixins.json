@@ -3,9 +3,7 @@
 	"minVersion": "0.8",
 	"package": "pers.liaohaolong.slotschecker.mixin",
 	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"ScreenHandlerMixin"
-	],
+	"mixins": [],
 	"client": [],
 	"server": [],
 	"injectors": {

@@ -20,7 +20,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.command.EntitySelector;
@@ -31,24 +30,31 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pers.liaohaolong.slotschecker.inventory.OffsetInventory;
 import pers.liaohaolong.slotschecker.screen.ConnectedScreenHandler;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
+/**
+ * <h1>Slots Checker</h1>
+ *
+ * <p>这个模组提供了一个命令，可查看和修改任何玩家的背包、快捷栏、末影箱、护甲以及副手格子（需要 4 级权限等级）。</p>
+ *
+ * <p>相关链接：
+ *     <a href="https://modrinth.com/mod/slots-checker">主页</a>
+ *     <a href="https://gitee.com/AnNight/slots-checker/issues">问题反馈</a>
+ * </p>
+ *
+ * @author 廖浩龙
+ */
 public class SlotsChecker implements ModInitializer {
 
-	public static final String MOD_ID = "slots-checker";
-
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	@SuppressWarnings("unused")
+    public static final String MOD_ID = "slots-checker";
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Initializing!");
-
 		// inventory
 		LiteralArgumentBuilder<ServerCommandSource> inventoryCommand = literal("inventory")
 				.requires(source -> source.hasPermissionLevel(4))

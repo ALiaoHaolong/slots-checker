@@ -23,6 +23,11 @@ import net.minecraft.screen.ScreenHandlerType;
 
 import java.util.UUID;
 
+/**
+ * <h3>ConnectedScreenHandler</h3>
+ *
+ * <p>检查界面的屏幕处理器。</p>
+ */
 public class ConnectedScreenHandler extends GenericContainerScreenHandler {
 
     /**

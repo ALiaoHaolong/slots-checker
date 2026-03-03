@@ -23,6 +23,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Nameable;
 
+/**
+ * <h3>OffsetInventory</h3>
+ *
+ * <p>将 PlayerInventory 的指定部分槽位映射到 OffsetInventory 的槽位。</p>
+ */
 public class OffsetInventory implements Inventory, Nameable {
 
     /**
@@ -56,6 +61,9 @@ public class OffsetInventory implements Inventory, Nameable {
         this.size = end - start;
         this.start = start;
         this.end = end;
+
+        if (this.maxSize < size)
+            throw new IllegalArgumentException("Max size must be greater than or equal to size.");
     }
 
     /**
