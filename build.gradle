@@ -4,6 +4,9 @@ import net.fabricmc.loom.task.RemapSourcesJarTask
 plugins {
 	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
+
+	// Modrinth
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 version = project.mod_version
@@ -31,7 +34,7 @@ processResources {
 	inputs.property "version", project.version
 	inputs.property "minecraft_version", project.minecraft_version
 	inputs.property "loader_version", project.loader_version
-	filteringCharset "UTF-8"
+	filteringCharset = "UTF-8"
 
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version,
@@ -62,25 +65,39 @@ jar {
 // Customize the file name of the main jar.
 tasks.named('remapJar', RemapJarTask) {
 	archiveFileName = "${project.archives_base_name}-fabric-${project.mod_version}-mc${project.minecraft_version}.jar"
-	input = jar.archiveFile
 }
 
 // Customize the file name of the sources jar.
 tasks.named('remapSourcesJar', RemapSourcesJarTask) {
 	archiveFileName = "${project.archives_base_name}-fabric-${project.mod_version}-mc${project.minecraft_version}-sources.jar"
-	input = tasks.sourcesJar.archiveFile
 }
 
-// Configure the publication. Not yet in use.
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			artifactId = project.archives_base_name
-			from components.java
-		}
+// Publish.
+def getChangelogFromFile() {
+	def versionFile = new File(rootProject.file("changelogs"), "${project.mod_version}.md")
+
+	if (versionFile.exists()) {
+		return versionFile.text
 	}
 
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
+	return null
+}
+
+modrinth {
+	token = System.getenv("MODRINTH_TOKEN")
+	projectId = project.project_id
+	versionNumber = "fabric-${project.mod_version}-mc${project.minecraft_version}"
+	versionName = "${project.mod_name} ${project.mod_version} for Fabric ${project.minecraft_version}"
+	changelog = getChangelogFromFile()
+	versionType = "release"
+	uploadFile = remapJar
+	additionalFiles = [remapSourcesJar]
+	gameVersions = project.game_versions.split(",").toList()
+	loaders = ["fabric"]
+	dependencies {
+		required.project "fabric-api"
 	}
+	// Sync the contents of the README.md file in the project's root to the Modrinth description.
+	syncBodyFrom = rootProject.file("modrinth/README.md").text
+	debugMode = true
 }
