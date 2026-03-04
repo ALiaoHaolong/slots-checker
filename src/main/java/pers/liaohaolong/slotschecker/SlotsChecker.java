@@ -22,10 +22,9 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.minecraft.command.DefaultPermissions;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.command.permission.Permission;
-import net.minecraft.command.permission.PermissionLevel;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.command.ServerCommandSource;
@@ -59,44 +58,42 @@ public class SlotsChecker implements ModInitializer {
 	public void onInitialize() {
 		// inventory
 		LiteralArgumentBuilder<ServerCommandSource> inventoryCommand = literal("inventory")
-				// I am not sure whether this is correct.
-				// original: .requires(source -> source.hasPermissionLevel(4))
-				.requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.OWNERS)))
+				.requires(source -> source.getPermissions().hasPermission(DefaultPermissions.OWNERS))
 				.then(argument("player", EntityArgumentType.player())
 						.executes(context -> openInventoryChecker(getSourcePlayer(context), getTargetPlayer(context)))
 				);
 
 		// hotbar
 		LiteralArgumentBuilder<ServerCommandSource> hotbarSubCommand = literal("hotbar")
-				.requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.OWNERS)))
+				.requires(source -> source.getPermissions().hasPermission(DefaultPermissions.OWNERS))
 				.then(argument("player", EntityArgumentType.player())
 						.executes(context -> openHotbarChecker(getSourcePlayer(context), getTargetPlayer(context)))
 				);
 
 		// ender chest
 		LiteralArgumentBuilder<ServerCommandSource> enderSubCommand = literal("ender")
-				.requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.OWNERS)))
+				.requires(source -> source.getPermissions().hasPermission(DefaultPermissions.OWNERS))
 				.then(argument("player", EntityArgumentType.player())
 						.executes(context -> openEnderChecker(getSourcePlayer(context), getTargetPlayer(context)))
 				);
 
 		// armor
 		LiteralArgumentBuilder<ServerCommandSource> armorSubCommand = literal("armor")
-				.requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.OWNERS)))
+				.requires(source -> source.getPermissions().hasPermission(DefaultPermissions.OWNERS))
 				.then(argument("player", EntityArgumentType.player())
 						.executes(context -> openArmorChecker(getSourcePlayer(context), getTargetPlayer(context)))
 				);
 
 		// offhand
 		LiteralArgumentBuilder<ServerCommandSource> inventorySubCommand = literal("offhand")
-				.requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.OWNERS)))
+				.requires(source -> source.getPermissions().hasPermission(DefaultPermissions.OWNERS))
 				.then(argument("player", EntityArgumentType.player())
 						.executes(context -> openOffhandChecker(getSourcePlayer(context), getTargetPlayer(context)))
 				);
 
 		// slots-checker
 		LiteralArgumentBuilder<ServerCommandSource> rootCommand = literal("slots-checker")
-				.requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.OWNERS)))
+				.requires(source -> source.getPermissions().hasPermission(DefaultPermissions.OWNERS))
 				.then(enderSubCommand)
 				.then(hotbarSubCommand)
 				.then(inventoryCommand)
