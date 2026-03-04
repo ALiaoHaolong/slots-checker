@@ -21,9 +21,11 @@ Wiki：
 
 ## 介绍
 
-这是一个基于Fabric的Minecraft游戏模组，为管理员提供了一组“/slots-checker”命令，以查看并修改任意玩家的背包（Inventory）、快捷栏（Hotbar）、末影箱（Ender Chest）、盔甲（Armor）和副手（Offhand）物品槽。
+这个模组提供了一个命令，可查看和修改任何玩家的背包、快捷栏、末影箱、护甲以及副手格子（需要 4 级权限等级）。
 
-客户端安装后可提供游戏内界面翻译。支持 en_us、zh_cn、zh_hk 和 zh_tw 语言。
+客户端安装后可提供游戏内界面翻译。
+
+支持 en_us、zh_cn、zh_hk 和 zh_tw 语言。
 
 注意事项：
 
