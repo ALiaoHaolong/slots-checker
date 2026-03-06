@@ -20,18 +20,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Nameable;
 
+import java.util.stream.IntStream;
+
 /**
- * <h3>OffsetInventory</h3>
+ * <h3>OffsetPlayerInventory</h3>
  *
- * <p>将 PlayerInventory 的指定部分槽位映射到 OffsetInventory 的槽位。</p>
+ * <p>将 PlayerInventory 的指定范围的槽位映射到 OffsetPlayerInventory 的槽位。</p>
  */
-public class OffsetInventory implements Inventory, Nameable {
+@SuppressWarnings("unused")
+public class OffsetPlayerInventory implements Inventory, Nameable {
 
     /**
-     * 被检查的玩家背包
+     * 被映射的 PlayerInventory
      */
     private final PlayerInventory inventory;
 
@@ -46,29 +50,55 @@ public class OffsetInventory implements Inventory, Nameable {
     private final int size;
 
     /**
-     * 此界面对应的玩家背包的起始槽位索引（含）
+     * 是正序映射
+     */
+    private final boolean isPositiveSequence;
+
+    /**
+     * 被映射的 PlayerInventory 的起始槽位索引
      */
     private final int start;
 
     /**
-     * 此界面对应的玩家背包的结束槽位索引（不含）
+     * 被映射的 PlayerInventory 的结束槽位索引
      */
     private final int end;
 
-    public OffsetInventory(PlayerInventory inventory, int maxSize, int start, int end) {
+    /**
+     * <p>映射时，除了可以使用正序映射参数（start > end），还可以使用逆序映射参数（start < end）。</p>
+     * <ul>
+     *     <li>使用正序参映射数时，被映射区间为 [start, end)</li>
+     *     <li>使用逆序映射参数时，被映射区间为 [end, start)</li>
+     * </ul>
+     *
+     * <p>示例：</p>
+     * <ul>
+     *     <li>当 maxSize = 27, start = 9, end = 36 时，thisInventory 的 [0,27) 对应 [9,36)</li>
+     *     <li>当 maxSize = 9, start = 40, end = 36 时，thisInventory 的 [0,4) 对应 [36,40)</li>
+     * </ul>
+     *
+     * @param inventory {@link #inventory}
+     * @param maxSize {@link #maxSize}
+     * @param start {@link #start}
+     * @param end {@link #end}
+     */
+    public OffsetPlayerInventory(PlayerInventory inventory, int maxSize, int start, int end) {
         this.inventory = inventory;
         this.maxSize = maxSize;
-        this.size = end - start;
+        this.size = Math.abs(end - start);
+        this.isPositiveSequence = start < end;
         this.start = start;
         this.end = end;
 
+        if (size <= 0)
+            throw new IllegalArgumentException("Size must be greater than 0.");
         if (this.maxSize < size)
             throw new IllegalArgumentException("Max size must be greater than or equal to size.");
     }
 
     /**
-     * 获取背包大小
-     * @return 库存的总槽位数。例如：玩家背包返回 41（背包27 + 快捷栏9 + 盔甲4 + 副手1)
+     * 此界面的槽位数量
+     * @return {@link #maxSize}
      */
     @Override
     public int size() {
@@ -81,11 +111,7 @@ public class OffsetInventory implements Inventory, Nameable {
      */
     @Override
     public boolean isEmpty() {
-        for (int i = start; i < end; i++) {
-            if (!inventory.getStack(i).isEmpty())
-                return false;
-        }
-        return true;
+        return getForeachStream().allMatch(i -> inventory.getStack(i).isEmpty());
     }
 
     /**
@@ -96,8 +122,8 @@ public class OffsetInventory implements Inventory, Nameable {
     @Override
     public ItemStack getStack(int slot) {
         if (slot >= size)
-            return ItemStack.EMPTY;
-        return inventory.getStack(slot + start);
+            return new ItemStack(Items.BARRIER);
+        return inventory.getStack(getOffsetSlotIndex(slot));
     }
 
     /**
@@ -110,7 +136,7 @@ public class OffsetInventory implements Inventory, Nameable {
     public ItemStack removeStack(int slot, int amount) {
         if (slot >= size)
             return ItemStack.EMPTY;
-        return inventory.removeStack(slot + start, amount);
+        return inventory.removeStack(getOffsetSlotIndex(slot), amount);
     }
 
     /**
@@ -122,7 +148,7 @@ public class OffsetInventory implements Inventory, Nameable {
     public ItemStack removeStack(int slot) {
         if (slot >= size)
             return ItemStack.EMPTY;
-        return inventory.removeStack(slot + start);
+        return inventory.removeStack(getOffsetSlotIndex(slot));
     }
 
     /**
@@ -134,7 +160,7 @@ public class OffsetInventory implements Inventory, Nameable {
     public void setStack(int slot, ItemStack stack) {
         if (slot >= size)
             return;
-        inventory.setStack(slot + start, stack);
+        inventory.setStack(getOffsetSlotIndex(slot), stack);
     }
 
     @Override
@@ -159,9 +185,7 @@ public class OffsetInventory implements Inventory, Nameable {
      */
     @Override
     public void clear() {
-        for (int i = start; i < end; i++) {
-            inventory.setStack(i, ItemStack.EMPTY);
-        }
+        getForeachStream().forEach(i -> inventory.setStack(i, ItemStack.EMPTY));
     }
 
     /**
@@ -172,6 +196,31 @@ public class OffsetInventory implements Inventory, Nameable {
     public Text getName() {
         // 直接调用 PlayerInventory
         return inventory.getName();
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * 获取一个 IntStream，包含所有受此界面影响的 PlayerInventory 的原始槽位索引
+     * @return 受此界面影响的 PlayerInventory 的原始槽位索引的 IntStream
+     */
+    private IntStream getForeachStream() {
+        return IntStream.range(isPositiveSequence ? start : end, isPositiveSequence ? end : start);
+    }
+
+    /**
+     * 根据界面槽位索引获取 PlayerInventory 的原始槽位索引
+     * @param slot 界面槽位索引
+     * @return PlayerInventory 的原始槽位索引
+     */
+    private int getOffsetSlotIndex(int slot) {
+        return isPositiveSequence ? slot + start : start - slot - 1;
     }
 
 }

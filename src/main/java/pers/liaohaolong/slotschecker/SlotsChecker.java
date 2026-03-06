@@ -30,7 +30,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
-import pers.liaohaolong.slotschecker.inventory.OffsetInventory;
+import pers.liaohaolong.slotschecker.inventory.OffsetPlayerInventory;
 import pers.liaohaolong.slotschecker.screen.ConnectedScreenHandler;
 
 import static net.minecraft.server.command.CommandManager.argument;
@@ -135,7 +135,7 @@ public class SlotsChecker implements ModInitializer {
 
 	public static int openHotbarChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
 		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 0, 9), 1, target.getUuid()),
+				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 0, 9), 1, target.getUuid()),
 				Text.translatable("container.hotbar_checker", target.getEntityName())
 		));
 		return 1;
@@ -143,7 +143,7 @@ public class SlotsChecker implements ModInitializer {
 
 	public static int openInventoryChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
 		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, new OffsetInventory(target.getInventory(), 27, 9, 36), 3, target.getUuid()),
+				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 27, 9, 36), 3, target.getUuid()),
 				Text.translatable("container.inventory_checker", target.getEntityName())
 		));
 		return 1;
@@ -151,7 +151,7 @@ public class SlotsChecker implements ModInitializer {
 
 	public static int openArmorChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
 		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 36, 40), 1, target.getUuid()),
+				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 36), 1, target.getUuid()),
 				Text.translatable("container.armor_checker", target.getEntityName())
 		));
 		return 1;
@@ -159,7 +159,7 @@ public class SlotsChecker implements ModInitializer {
 
 	public static int openOffhandChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
 		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 40, 41), 1, target.getUuid()),
+				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 41), 1, target.getUuid()),
 				Text.translatable("container.offhand_checker", target.getEntityName())
 		));
 		return 1;
