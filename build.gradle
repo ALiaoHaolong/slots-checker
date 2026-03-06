@@ -103,5 +103,4 @@ modrinth {
 	}
 	// Sync the contents of the README.md file in the project's root to the Modrinth description.
 	syncBodyFrom = rootProject.file("modrinth/README.md").text
-	debugMode = true
 }
