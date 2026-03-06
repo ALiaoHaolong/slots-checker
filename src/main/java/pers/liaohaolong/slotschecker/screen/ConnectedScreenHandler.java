@@ -21,16 +21,10 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.collection.DefaultedList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pers.liaohaolong.slotschecker.inventory.OffsetPlayerInventory;
 
-import java.lang.reflect.Field;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -39,8 +33,6 @@ import java.util.UUID;
  * <p>检查界面的屏幕处理器。</p>
  */
 public class ConnectedScreenHandler extends GenericContainerScreenHandler {
-
-    public static final Logger LOGGER = LoggerFactory.getLogger(ConnectedScreenHandler.class);
 
     /**
      * 被检查者
@@ -55,22 +47,8 @@ public class ConnectedScreenHandler extends GenericContainerScreenHandler {
         if (inventory instanceof OffsetPlayerInventory offsetPlayerInventory && offsetPlayerInventory.getSize() < offsetPlayerInventory.getMaxSize()) {
             // 清除默认 Slots
             this.slots.clear();
-            try {
-                Field trackedStacksField = ScreenHandler.class.getDeclaredField("trackedStacks");
-                trackedStacksField.setAccessible(true);
-                Optional.ofNullable(trackedStacksField.get(this))
-                        .filter(DefaultedList.class::isInstance)
-                        .map(DefaultedList.class::cast)
-                        .ifPresent(DefaultedList::clear);
-                Field previousTrackedStacksFiled = ScreenHandler.class.getDeclaredField("previousTrackedStacks");
-                previousTrackedStacksFiled.setAccessible(true);
-                Optional.ofNullable(previousTrackedStacksFiled.get(this))
-                        .filter(DefaultedList.class::isInstance)
-                        .map(DefaultedList.class::cast)
-                        .ifPresent(DefaultedList::clear);
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                LOGGER.error(e.getMessage());
-            }
+            this.trackedStacks.clear();
+            this.previousTrackedStacks.clear();
 
             // 重新初始化
             int i = (this.getRows() - 4) * 18;

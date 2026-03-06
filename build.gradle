@@ -43,6 +43,10 @@ processResources {
 	}
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/${project.archives_base_name}.accesswidener")
+}
+
 // Set up the Java compilation task.
 tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = "UTF-8"
