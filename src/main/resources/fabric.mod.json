@@ -30,6 +30,7 @@
 	"mixins": [
 		"slots-checker.mixins.json"
 	],
+	"accessWidener": "slots-checker.accesswidener",
 	"depends": {
 		"minecraft": ">=${minecraft_version}",
 		"fabricloader": ">=${loader_version}",
