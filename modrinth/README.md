@@ -49,7 +49,7 @@ Important:
 
 4. `/slots-checker armor <player>`  
    Open the player's armor interface.  
-   The first four columns are in sequence: boots, leg guards, breastplates, and helmets. The last five fields are invalid.  
+   The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
    This interface has no item restrictions. Any item can be directly placed in the armor slot.  
    ![Armor](https://cdn-alt.modrinth.com/data/1wrPNL41/images/3dc942ca09e327de26c6b829f004fe4e2ce6ff61.png)
 
