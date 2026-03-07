@@ -51,12 +51,12 @@ Important:
    Open the player's armor interface.  
    The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
    This interface has no item restrictions. Any item can be directly placed in the armor slot.  
-   ![Armor](https://cdn-alt.modrinth.com/data/1wrPNL41/images/3dc942ca09e327de26c6b829f004fe4e2ce6ff61.png)
+   ![Armor](https://cdn-alt.modrinth.com/data/1wrPNL41/images/9048d5224911e9177919fecf555564a3fcac0c23.png)
 
 5. `/slots-checker offhand <player>`  
    Open the player's offhand interface.  
    The last 8 fields are invalid.  
-   ![Offhand](https://cdn-alt.modrinth.com/data/1wrPNL41/images/602762d6db0accce4022a816bc47d0697b698a28.png)
+   ![Offhand](https://cdn-alt.modrinth.com/data/1wrPNL41/images/2ca9a242d457e38d36103ae5c5b156ac98f18898.png)
 
 ## Author
 
