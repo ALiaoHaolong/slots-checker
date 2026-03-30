@@ -1,23 +1,25 @@
+<!--suppress HtmlDeprecatedAttribute -->
+<div align="center">
+
 # Slots Checker
 
-![Logo](https://cdn-alt.modrinth.com/data/1wrPNL41/7ca1b81516638657a03d90bcb7c8c9b17f0c97d1_96.webp)
+<img src="https://cdn-alt.modrinth.com/data/1wrPNL41/images/7ca1b81516638657a03d90bcb7c8c9b17f0c97d1.png" alt="Logo" width="128" height="128"/>
 
-[[中文]](https://gitee.com/AnNight/slots-checker)
+![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_1.21.11-11304B?style=for-the-badge&labelColor=D0D5DA)
 
-Modrinth:  
-[Slots Checker - Minecraft Mod](https://modrinth.com/mod/slots-checker)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/1wrPNL41?style=flat-square&logo=modrinth&labelColor=D0D5DA&color=00af5c)](https://modrinth.com/mod/slots-checker)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1489337?style=flat-square&logo=curseforge&labelColor=D0D5DA&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/slots-checker)
+[![Modrinth Version](https://img.shields.io/modrinth/v/1wrPNL41?style=flat-square&logo=gitee&logoColor=C71D23&labelColor=D0D5DA&color=C71D23)](https://gitee.com/AnNight/slots-checker)
 
-Mod 百科:  
-[Slots Checker - MC百科|最大的Minecraft中文MOD百科](https://www.mcmod.cn/class/8936.html)
+[![MCMOD](https://img.shields.io/badge/MCMOD-D0D5DA?style=for-the-badge)](https://www.mcmod.cn/class/8936.html)
+[![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://gitee.com/AnNight/slots-checker/wikis)
+[![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://gitee.com/AnNight/slots-checker/issues)
 
-Source code:  
-[Gitee.com - 暗夜/Slots Checker](https://gitee.com/AnNight/slots-checker)
+**🌍 [English](https://gitee.com/AnNight/slots-checker/blob/v1/Readme.en.md) • [简体中文](https://gitee.com/AnNight/slots-checker/blob/v1/Readme.zh-CN.md)**
 
-Issues:  
-[Issues · 暗夜/Slots Checker - Gitee.com](https://gitee.com/AnNight/slots-checker/issues)
+</div>
 
-Wiki:  
-[Wiki - Gitee.com](https://gitee.com/AnNight/slots-checker/wikis)
+---
 
 ## Introduction
 
@@ -37,26 +39,26 @@ Important:
 
 1. `/slots-checker inventory <player>`  
    Open the player's inventory interface.  
-   ![Inventory](https://cdn-alt.modrinth.com/data/1wrPNL41/images/3de161eb685822ed53beb4bfd64ddd6064d92c50.png)
+   <img src="https://cdn-alt.modrinth.com/data/1wrPNL41/images/3de161eb685822ed53beb4bfd64ddd6064d92c50.png" alt="Inventory" width="400"/>
 
 2. `/slots-checker hotbar <player>`  
    Open the player's hotbar interface.  
-   ![Hotbar](https://cdn-alt.modrinth.com/data/1wrPNL41/images/38068888fd0a9e0641ef362b563743874a92f8f3.png)
+   <img src="https://cdn-alt.modrinth.com/data/1wrPNL41/images/38068888fd0a9e0641ef362b563743874a92f8f3.png" alt="Hotbar" width="400"/>
 
 3. `/slots-checker ender <player>`  
    Open the player's ender chest interface.  
-   ![Ender Chest](https://cdn-alt.modrinth.com/data/1wrPNL41/images/14300946feb327cfaf9b554e9f7d7e52079038c0.png)
+   <img src="https://cdn-alt.modrinth.com/data/1wrPNL41/images/14300946feb327cfaf9b554e9f7d7e52079038c0.png" alt="Ender Chest" width="400"/>
 
 4. `/slots-checker armor <player>`  
    Open the player's armor interface.  
    The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
    This interface has no item restrictions. Any item can be directly placed in the armor slot.  
-   ![Armor](https://cdn-alt.modrinth.com/data/1wrPNL41/images/9048d5224911e9177919fecf555564a3fcac0c23.png)
+   <img src="https://cdn-alt.modrinth.com/data/1wrPNL41/images/9048d5224911e9177919fecf555564a3fcac0c23.png" alt="Armor" width="400"/>
 
 5. `/slots-checker offhand <player>`  
    Open the player's offhand interface.  
    The last 8 fields are invalid.  
-   ![Offhand](https://cdn-alt.modrinth.com/data/1wrPNL41/images/2ca9a242d457e38d36103ae5c5b156ac98f18898.png)
+   <img src="https://cdn-alt.modrinth.com/data/1wrPNL41/images/2ca9a242d457e38d36103ae5c5b156ac98f18898.png" alt="Offhand" width="400"/>
 
 ## Author
 
