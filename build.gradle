@@ -101,6 +101,6 @@ modrinth {
 	dependencies {
 		required.project "fabric-api"
 	}
-	// Sync the contents of the README.md file in the project's root to the Modrinth description.
-	syncBodyFrom = rootProject.file("modrinth/README.md").text
+	// Sync the contents of the README.modrinth.md file in the project's root to the Modrinth description.
+	syncBodyFrom = rootProject.file("README.modrinth.md").text
 }

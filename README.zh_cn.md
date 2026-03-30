@@ -9,13 +9,13 @@
 
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/1wrPNL41?style=flat-square&logo=modrinth&labelColor=D0D5DA&color=00af5c)](https://modrinth.com/mod/slots-checker)
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/1489337?style=flat-square&logo=curseforge&labelColor=D0D5DA&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/slots-checker)
-[![Modrinth Version](https://img.shields.io/modrinth/v/1wrPNL41?style=flat-square&logo=gitee&logoColor=C71D23&labelColor=D0D5DA&color=C71D23)](https://gitee.com/AnNight/slots-checker)
+[![Modrinth Version](https://img.shields.io/modrinth/v/1wrPNL41?style=flat-square&logo=github&logoColor=010409&labelColor=D0D5DA&color=010409)](https://github.com/ALiaoHaolong/slots-checker)
 
 [![MCMOD](https://img.shields.io/badge/MCMOD-D0D5DA?style=for-the-badge)](https://www.mcmod.cn/class/8936.html)
-[![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://gitee.com/AnNight/slots-checker/wikis)
-[![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://gitee.com/AnNight/slots-checker/issues)
+[![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://github.com/ALiaoHaolong/slots-checker/wiki)
+[![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://github.com/ALiaoHaolong/slots-checker/issues)
 
-**🌍 [English](Readme.en.md) • [简体中文](Readme.zh-CN.md)**
+**🌍 [English](README.md) • [简体中文](README.zh_cn.md)**
 
 </div>
 
@@ -33,32 +33,32 @@
 
 - **服务端必装，客户端选装。**
 - 暂**不支持**查看和修改离线玩家的数据（离线玩家指的是当前不在游戏内的玩家，而不是指通过离线登陆方式进入游戏的玩家）。
-- [创造模式背包问题](CreativeInventoryProblem.md)
+- [创造模式背包问题](CreativeInventoryProblem.md)。
 
 ## 命令
 
 1. `/slots-checker inventory <玩家>`  
    打开玩家的背包界面。  
-   <img src="doc/inventory.png" alt="Inventory" width="400"/>
+   <img src="docs/inventory.png" alt="Inventory" width="400"/>
 
 2. `/slots-checker hotbar <玩家>`  
    打开玩家的快捷栏界面。  
-   <img src="doc/hotbar.png" alt="Hotbar" width="400"/>
+   <img src="docs/hotbar.png" alt="Hotbar" width="400"/>
 
 3. `/slots-checker ender <玩家>`  
    打开玩家的末影箱界面。  
-   <img src="doc/ender.png" alt="Ender Chest" width="400"/>
+   <img src="docs/ender.png" alt="Ender Chest" width="400"/>
 
 4. `/slots-checker armor <玩家>`  
    打开玩家的盔甲槽界面。  
    前 4 个栏位依次为：头盔、胸甲、护腿、靴子；后 5 个栏位无效。  
    此界面没有物品限制，任意物品均可直接放入盔甲栏位。  
-   <img src="doc/armor.png" alt="Armor" width="400"/>
+   <img src="docs/armor.png" alt="Armor" width="400"/>
 
 5. `/slots-checker offhand <玩家>`  
    打开玩家的副手槽界面。  
    后 8 个栏位无效。  
-   <img src="doc/offhand.png" alt="Offhand" width="400"/>
+   <img src="docs/offhand.png" alt="Offhand" width="400"/>
 
 ## 作者
 
