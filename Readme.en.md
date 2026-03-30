@@ -1,23 +1,25 @@
+<!--suppress HtmlDeprecatedAttribute -->
+<div align="center">
+
 # Slots Checker
 
-![](icon.png)
+<img src="icon.png" alt="Logo" width="128" height="128"/>
 
-[[中文]](Readme.zh-CN.md)
+![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_1.21.11-11304B?style=for-the-badge&labelColor=D0D5DA)
 
-Modrinth:  
-[Slots Checker - Minecraft Mod](https://modrinth.com/mod/slots-checker)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/1wrPNL41?style=flat-square&logo=modrinth&labelColor=D0D5DA&color=00af5c)](https://modrinth.com/mod/slots-checker)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1489337?style=flat-square&logo=curseforge&labelColor=D0D5DA&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/slots-checker)
+[![Modrinth Version](https://img.shields.io/modrinth/v/1wrPNL41?style=flat-square&logo=gitee&logoColor=C71D23&labelColor=D0D5DA&color=C71D23)](https://gitee.com/AnNight/slots-checker)
 
-Mod 百科:  
-[Slots Checker - MC百科|最大的Minecraft中文MOD百科](https://www.mcmod.cn/class/8936.html)
+[![MCMOD](https://img.shields.io/badge/MCMOD-D0D5DA?style=for-the-badge)](https://www.mcmod.cn/class/8936.html)
+[![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://gitee.com/AnNight/slots-checker/wikis)
+[![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://gitee.com/AnNight/slots-checker/issues)
 
-Source code:  
-[Gitee.com - 暗夜/Slots Checker](https://gitee.com/AnNight/slots-checker)
+**🌍 [English](Readme.en.md) • [简体中文](Readme.zh-CN.md)**
 
-Issues:  
-[Issues · 暗夜/Slots Checker - Gitee.com](https://gitee.com/AnNight/slots-checker/issues)
+</div>
 
-Wiki:  
-[Wiki - Gitee.com](https://gitee.com/AnNight/slots-checker/wikis)
+---
 
 ## Introduction
 
@@ -37,26 +39,26 @@ Important:
 
 1. `/slots-checker inventory <player>`  
    Open the player's inventory interface.  
-   ![](doc/inventory.png)
+   <img src="doc/inventory.png" alt="Inventory" width="400"/>
 
 2. `/slots-checker hotbar <player>`  
    Open the player's hotbar interface.  
-   ![](doc/hotbar.png)
+   <img src="doc/hotbar.png" alt="Hotbar" width="400"/>
 
 3. `/slots-checker ender <player>`  
    Open the player's ender chest interface.  
-   ![](doc/ender.png)
+   <img src="doc/ender.png" alt="Ender Chest" width="400"/>
 
 4. `/slots-checker armor <player>`  
    Open the player's armor interface.  
    The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
    This interface has no item restrictions. Any item can be directly placed in the armor slot.  
-   ![](doc/armor.png)
+   <img src="doc/armor.png" alt="Armor" width="400"/>
 
 5. `/slots-checker offhand <player>`  
    Open the player's offhand interface.  
    The last 8 fields are invalid.  
-   ![](doc/offhand.png)
+   <img src="doc/offhand.png" alt="Offhand" width="400"/>
 
 ## Author
 
