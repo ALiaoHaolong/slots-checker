@@ -41,11 +41,6 @@ import static net.minecraft.server.command.CommandManager.literal;
  *
  * <p>这个模组提供了一个命令，可查看和修改任何玩家的背包、快捷栏、末影箱、护甲以及副手格子（需要 4 级权限等级）。</p>
  *
- * <p>相关链接：
- *     <a href="https://modrinth.com/mod/slots-checker">主页</a>
- *     <a href="https://gitee.com/AnNight/slots-checker/issues">问题反馈</a>
- * </p>
- *
  * @author 廖浩龙
  */
 public class SlotsChecker implements ModInitializer {
