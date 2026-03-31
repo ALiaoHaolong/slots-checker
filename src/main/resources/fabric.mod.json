@@ -16,8 +16,8 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/slots-checker",
-		"sources": "https://gitee.com/AnNight/slots-checker",
-		"issues": "https://gitee.com/AnNight/slots-checker/issues"
+		"sources": "https://github.com/ALiaoHaolong/slots-checker",
+		"issues": "https://github.com/ALiaoHaolong/slots-checker/issues"
 	},
 	"license": "Apache-2.0",
 	"icon": "assets/slots-checker/icon.png",
@@ -44,6 +44,7 @@
 		"modmenu": {
 			"links": {
 				"modmenu.modrinth": "https://modrinth.com/mod/slots-checker",
+				"modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/slots-checker",
 				"slots-checker.mcmod": "https://www.mcmod.cn/class/8936.html"
 			}
 		}
