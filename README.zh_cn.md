@@ -33,32 +33,32 @@
 
 - **服务端必装，客户端选装。**
 - 暂**不支持**查看和修改离线玩家的数据（离线玩家指的是当前不在游戏内的玩家，而不是指通过离线登陆方式进入游戏的玩家）。
-- [创造模式背包问题](CreativeInventoryProblem.md)。
+- [创造模式背包问题](docs/CreativeInventoryProblem.md)。
 
 ## 命令
 
 1. `/slots-checker inventory <玩家>`  
    打开玩家的背包界面。  
-   <img src="docs/inventory.png" alt="Inventory" width="400"/>
+   <img src="docs/images/inventory.png" alt="Inventory" width="400"/>
 
 2. `/slots-checker hotbar <玩家>`  
    打开玩家的快捷栏界面。  
-   <img src="docs/hotbar.png" alt="Hotbar" width="400"/>
+   <img src="docs/images/hotbar.png" alt="Hotbar" width="400"/>
 
 3. `/slots-checker ender <玩家>`  
    打开玩家的末影箱界面。  
-   <img src="docs/ender.png" alt="Ender Chest" width="400"/>
+   <img src="docs/images/ender.png" alt="Ender Chest" width="400"/>
 
 4. `/slots-checker armor <玩家>`  
    打开玩家的盔甲槽界面。  
    前 4 个栏位依次为：头盔、胸甲、护腿、靴子；后 5 个栏位无效。  
    此界面没有物品限制，任意物品均可直接放入盔甲栏位。  
-   <img src="docs/armor.png" alt="Armor" width="400"/>
+   <img src="docs/images/armor.png" alt="Armor" width="400"/>
 
 5. `/slots-checker offhand <玩家>`  
    打开玩家的副手槽界面。  
    后 8 个栏位无效。  
-   <img src="docs/offhand.png" alt="Offhand" width="400"/>
+   <img src="docs/images/offhand.png" alt="Offhand" width="400"/>
 
 ## 作者
 

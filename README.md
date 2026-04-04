@@ -33,32 +33,32 @@ Important:
 
 - **Required on the server, optional on the client.**
 - For the time being, it is **not supported** to view or modify the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
-- [Creative inventory problem](CreativeInventoryProblem.md).
+- [Creative inventory problem](docs/CreativeInventoryProblem.md).
 
 ## Commands
 
 1. `/slots-checker inventory <player>`  
    Open the player's inventory interface.  
-   <img src="docs/inventory.png" alt="Inventory" width="400"/>
+   <img src="docs/images/inventory.png" alt="Inventory" width="400"/>
 
 2. `/slots-checker hotbar <player>`  
    Open the player's hotbar interface.  
-   <img src="docs/hotbar.png" alt="Hotbar" width="400"/>
+   <img src="docs/images/hotbar.png" alt="Hotbar" width="400"/>
 
 3. `/slots-checker ender <player>`  
    Open the player's ender chest interface.  
-   <img src="docs/ender.png" alt="Ender Chest" width="400"/>
+   <img src="docs/images/ender.png" alt="Ender Chest" width="400"/>
 
 4. `/slots-checker armor <player>`  
    Open the player's armor interface.  
    The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
    This interface has no item restrictions. Any item can be directly placed in the armor slot.  
-   <img src="docs/armor.png" alt="Armor" width="400"/>
+   <img src="docs/images/armor.png" alt="Armor" width="400"/>
 
 5. `/slots-checker offhand <player>`  
    Open the player's offhand interface.  
    The last 8 fields are invalid.  
-   <img src="docs/offhand.png" alt="Offhand" width="400"/>
+   <img src="docs/images/offhand.png" alt="Offhand" width="400"/>
 
 ## Author
 
