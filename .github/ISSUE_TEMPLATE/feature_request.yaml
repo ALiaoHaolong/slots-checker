@@ -33,18 +33,6 @@ body:
     validations:
       required: false
 
-  - type: dropdown
-    attributes:
-      label: Priority expectation
-      description: What do you think of the urgency of this function?
-      multiple: false
-      options:
-        - High - Urgent, need this as soon as possible
-        - Medium - Not urgent, but hope to have it
-        - Low - Nice to have, no rush
-    validations:
-      required: true
-
   - type: textarea
     attributes:
       label: Additional context
