@@ -46,7 +46,7 @@ tasks.withType(JavaCompile).configureEach {
 // Set up the Java plugins.
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 	withSourcesJar()
 }
