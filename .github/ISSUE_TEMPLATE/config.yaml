@@ -1,0 +1,10 @@
+blank_issues_enabled: false  # 设为 false 会禁用空白 Issue，强制用户选择模板
+
+contact_links:
+  - name: 📖 查看项目文档
+    url: https://你的文档地址.com
+    about: 在使用前，请先查阅我们的官方文档
+
+  - name: 💬 加入讨论区
+    url: https://github.com/你的用户名/你的仓库名/discussions
+    about: 如果是不确定是否为 Bug 的问题，欢迎先在 Discussions 中讨论

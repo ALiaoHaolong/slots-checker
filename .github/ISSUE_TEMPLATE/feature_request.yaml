@@ -1,0 +1,76 @@
+name: ✨ Feature Request
+description: 提出一个新功能或改进建议
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+assignees:
+  -  # 可选：填写默认指派人
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 感谢你为项目提出建议！
+        请详细描述你的想法，这有助于我们理解你的需求。
+
+  - type: checkboxes
+    attributes:
+      label: 提交前确认
+      description: 请确保已完成以下检查
+      options:
+        - label: 我已经搜索过现有的 Issues，没有发现重复的建议
+          required: true
+        - label: 我已经查看过项目文档，确认没有已有功能能满足需求
+          required: false
+
+  - type: textarea
+    attributes:
+      label: 你的需求与什么问题相关？
+      description: 清晰简洁地描述这个功能要解决什么问题
+      placeholder: 我在使用 [某个功能] 时感到不便，因为...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 描述你想要的解决方案
+      description: 清晰简洁地描述你希望实现的功能
+      placeholder: 我希望添加一个按钮，当点击时可以...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 考虑的替代方案
+      description: 你是否考虑过其他实现方式或变通方法？
+      placeholder: 我考虑过使用 X 方式，但它的缺点是...
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: 使用场景示例
+      description: 请提供一个具体的场景说明这个功能如何被使用
+      placeholder: |
+        用户登录后，在个人中心页面...
+        API 调用方式应该是...
+    validations:
+      required: false
+
+  - type: dropdown
+    attributes:
+      label: 优先级期望
+      description: 你认为这个功能的紧急程度如何？
+      multiple: false
+      options:
+        - 高（影响核心体验，希望尽快实现）
+        - 中（能提升体验，但不是必须）
+        - 低（锦上添花，不着急）
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 补充信息
+      description: 任何其他相关的信息、截图或参考资料
+    validations:
+      required: false

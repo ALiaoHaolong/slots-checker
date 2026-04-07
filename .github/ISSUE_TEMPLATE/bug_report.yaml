@@ -1,0 +1,89 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees:
+  -  ALiaoHaolong
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for taking the time to submit this Bug report!
+        Please fill in the following information as much as possible. This can help us locate and solve the problem more quickly.
+
+  - type: checkboxes
+    attributes:
+      label: Confirmation before submission
+      description: Please ensure that the following checks have been completed
+      options:
+        - label: I have searched the existing Issues and found no similar problems
+          required: true
+        - label: I have updated to the latest version, but the problem still exists
+          required: false
+
+  - type: input
+    attributes:
+      label: Minecraft Version
+      description: Which Minecraft version are you using?
+      placeholder: e.g., 1.18
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Fabric Version
+      description: Which Fabric version are you using?
+      placeholder: e.g., 0.18.0
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Fabric API Version
+      description: Which Fabric API version are you using?
+      placeholder: e.g., 0.44.0+1.18
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+      value: "1.\n2.\n3.\n"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Logs
+      description: Please provide any relevant logs or error messages.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+    validations:
+      required: false
