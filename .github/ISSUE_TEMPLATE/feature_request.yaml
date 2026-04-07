@@ -39,9 +39,9 @@ body:
       description: What do you think of the urgency of this function?
       multiple: false
       options:
-        - High (Affecting core experience, hope to be achieved as soon as possible)
-        - Medium (can enhance the experience, but not mandatory)
-        - Low (Adding the finishing touch, no rush)
+        - High - Urgent, need this as soon as possible
+        - Medium - Not urgent, but hope to have it
+        - Low - Nice to have, no rush
     validations:
       required: true
 
