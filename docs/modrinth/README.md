@@ -5,7 +5,7 @@
 
 <img src="https://cdn-alt.modrinth.com/data/1wrPNL41/images/7ca1b81516638657a03d90bcb7c8c9b17f0c97d1.png" alt="Logo" width="128" height="128"/>
 
-![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_1.21.11-11304B?style=for-the-badge&labelColor=D0D5DA)
+![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_26.1.1-11304B?style=for-the-badge&labelColor=D0D5DA)
 
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/1wrPNL41?style=flat-square&logo=modrinth&labelColor=D0D5DA&color=00af5c)](https://modrinth.com/mod/slots-checker)
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/1489337?style=flat-square&logo=curseforge&labelColor=D0D5DA&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/slots-checker)
@@ -15,7 +15,7 @@
 [![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://github.com/ALiaoHaolong/slots-checker/wiki)
 [![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://github.com/ALiaoHaolong/slots-checker/issues)
 
-**🌍 [English](https://github.com/ALiaoHaolong/slots-checker/blob/v1/README.md) • [简体中文](https://github.com/ALiaoHaolong/slots-checker/blob/v1/README.zh_cn.md)**
+**🌍 [English](https://github.com/ALiaoHaolong/slots-checker/blob/master/README.md) • [简体中文](https://github.com/ALiaoHaolong/slots-checker/blob/master/README.zh_cn.md)**
 
 </div>
 
@@ -33,7 +33,7 @@ Important:
 
 - **Required on the server, optional on the client.**
 - For the time being, it is **not supported** to view or modify the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
-- [Creative inventory problem](https://github.com/ALiaoHaolong/slots-checker/blob/v1/docs/CreativeInventoryProblem.md).
+- [Creative inventory problem](https://github.com/ALiaoHaolong/slots-checker/blob/master/docs/CreativeInventoryProblem.md).
 
 ## Commands
 
@@ -69,5 +69,5 @@ Important:
 
 ## License
 
-- Current version (v2 and later): Open source, licensed under the [Apache License 2.0](https://github.com/ALiaoHaolong/slots-checker/blob/v1/LICENSE).
+- Current version (v2 and later): Open source, licensed under the [Apache License 2.0](https://github.com/ALiaoHaolong/slots-checker/blob/master/LICENSE).
 - Historical versions (v1 and earlier): Closed-source development; previously declared under the MIT License but source code was not publicly released.
