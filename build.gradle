@@ -23,7 +23,7 @@ support {
             versions "1.21.11"
         }
         v4 {
-            versions "26.1"
+            versions "26.1", "26.1.1"
         }
     }
 }
@@ -32,7 +32,7 @@ modrinth {
     token = providers.environmentVariable("MODRINTH_TOKEN")
     projectId = project.modrinth_id
     description = providers.fileContents(layout.projectDirectory.file("docs/modrinth/README.md")).asText
-    debugMode = true
+    debugMode = false
 }
 
 support.versions.forEach {version -> {
