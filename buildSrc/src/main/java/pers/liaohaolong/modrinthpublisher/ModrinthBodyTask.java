@@ -24,7 +24,7 @@ import org.gradle.api.tasks.TaskAction;
 import static pers.liaohaolong.modrinthpublisher.ModrinthPublisher.GSON;
 import static pers.liaohaolong.modrinthpublisher.ModrinthPublisher.userAgent;
 
-public class ModrinthDescriptionTask extends DefaultTask {
+public class ModrinthBodyTask extends DefaultTask {
 
     @TaskAction
     public void run() {
@@ -35,7 +35,7 @@ public class ModrinthDescriptionTask extends DefaultTask {
         String slug = modrinthAPI.projects().get(id).join().getSlug();
 
         ModifyProject.ProjectModifications request = ModifyProject.ProjectModifications.builder()
-                .description(ext.getDescription().get().replace("\r\n", "\n"))
+                .body(ext.getDescription().get().replace("\r\n", "\n"))
                 .build();
 
         // Debug
@@ -49,7 +49,7 @@ public class ModrinthDescriptionTask extends DefaultTask {
         modrinthAPI.projects().modify(id, request).join();
 
         getLogger().lifecycle(
-                "Successfully uploaded description to {} ({}).",
+                "Successfully uploaded body to {} ({}).",
                 slug,
                 id
         );

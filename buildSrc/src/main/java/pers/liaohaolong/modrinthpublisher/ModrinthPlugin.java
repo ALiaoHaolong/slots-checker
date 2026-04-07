@@ -34,9 +34,9 @@ public class ModrinthPlugin implements Plugin<Project> {
             task.setDescription("Upload project to Modrinth");
             task.notCompatibleWithConfigurationCache("idk");
         });
-        project.getTasks().register("modrinthDescription", ModrinthDescriptionTask.class, task -> {
+        project.getTasks().register("modrinthBody", ModrinthBodyTask.class, task -> {
             task.setGroup("publish");
-            task.setDescription("Upload description to Modrinth");
+            task.setDescription("Upload body to Modrinth");
             task.notCompatibleWithConfigurationCache("idk");
         });
     }
