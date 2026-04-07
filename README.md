@@ -5,8 +5,6 @@
 
 </div>
 
----
-
 ## Branch Info
 
 This is the **v4** branch, containing the mod source code for Slots Checker supporting Minecraft 26.1 ~ 26.1.1.
