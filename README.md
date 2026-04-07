@@ -5,8 +5,6 @@
 
 </div>
 
----
-
 ## Branch Info
 
 This is the **v1** branch, containing the mod source code for Slots Checker supporting Minecraft 1.18 ~ 1.18.2.
