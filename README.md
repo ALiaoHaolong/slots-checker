@@ -3,69 +3,17 @@
 
 # Slots Checker
 
-<img src="icon.png" alt="Logo" width="128" height="128"/>
-
-![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_1.21.11-11304B?style=for-the-badge&labelColor=D0D5DA)
-
-[![Modrinth Downloads](https://img.shields.io/modrinth/dt/1wrPNL41?style=flat-square&logo=modrinth&labelColor=D0D5DA&color=00af5c)](https://modrinth.com/mod/slots-checker)
-[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1489337?style=flat-square&logo=curseforge&labelColor=D0D5DA&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/slots-checker)
-[![Modrinth Version](https://img.shields.io/modrinth/v/1wrPNL41?style=flat-square&logo=github&logoColor=010409&labelColor=D0D5DA&color=010409)](https://github.com/ALiaoHaolong/slots-checker)
-
-[![MCMOD](https://img.shields.io/badge/MCMOD-D0D5DA?style=for-the-badge)](https://www.mcmod.cn/class/8936.html)
-[![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://github.com/ALiaoHaolong/slots-checker/wiki)
-[![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://github.com/ALiaoHaolong/slots-checker/issues)
-
-**🌍 [English](README.md) • [简体中文](README.zh_cn.md)**
-
 </div>
 
 ---
 
-## Introduction
+## Branch Info
 
-This mod provides a command to view and modify any player's inventory, hotbar, ender chest, armor, and offhand slots (requires level 4 admin privileges).
+This is the **v4** branch, containing the mod source code for Slots Checker supporting Minecraft 26.1 ~ 26.1.1.
 
-When installed on the client, it provides in-game interface translations.
+For full documentation, changelogs, etc., please see:
 
-Supports en_us, zh_cn, zh_hk, and zh_tw languages.
-
-Important:
-
-- **Required on the server, optional on the client.**
-- For the time being, it is **not supported** to view or modify the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
-- [Creative inventory problem](docs/CreativeInventoryProblem.md).
-
-## Commands
-
-1. `/slots-checker inventory <player>`  
-   Open the player's inventory interface.  
-   <img src="docs/images/inventory.png" alt="Inventory" width="400"/>
-
-2. `/slots-checker hotbar <player>`  
-   Open the player's hotbar interface.  
-   <img src="docs/images/hotbar.png" alt="Hotbar" width="400"/>
-
-3. `/slots-checker ender <player>`  
-   Open the player's ender chest interface.  
-   <img src="docs/images/ender.png" alt="Ender Chest" width="400"/>
-
-4. `/slots-checker armor <player>`  
-   Open the player's armor interface.  
-   The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
-   This interface has no item restrictions. Any item can be directly placed in the armor slot.  
-   <img src="docs/images/armor.png" alt="Armor" width="400"/>
-
-5. `/slots-checker offhand <player>`  
-   Open the player's offhand interface.  
-   The last 8 fields are invalid.  
-   <img src="docs/images/offhand.png" alt="Offhand" width="400"/>
-
-## Author
-
-廖浩龙
-
-- aliaohaolong@qq.com
-- aliaohaolong@gmail.com
+👉 **[master branch](https://github.com/ALiaoHaolong/slots-checker)**
 
 ## License
 

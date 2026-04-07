@@ -1,6 +1,5 @@
 plugins {
 	id 'net.fabricmc.fabric-loom' version "${loom_version}"
-	id "com.modrinth.minotaur" version "2.+"
 }
 
 version = project.mod_version
@@ -60,24 +59,4 @@ tasks.named('jar', Jar) {
 // Customize the file name of the sources jar.
 tasks.named('sourcesJar', Jar) {
 	archiveFileName = "${project.archives_base_name}-fabric-${project.mod_version}-mc${project.minecraft_version}-sources.jar"
-}
-
-modrinth {
-	token = providers.environmentVariable("MODRINTH_TOKEN")
-	projectId = project.modrinth_id
-	versionNumber = "fabric-${project.mod_version}-mc${project.minecraft_version}"
-	versionName = "${project.mod_name} ${project.mod_version} for Fabric ${project.minecraft_version}"
-	changelog = providers.fileContents(layout.projectDirectory.file("docs/changelogs/${project.mod_version}.md")).asText
-	versionType = "release"
-	uploadFile = jar
-	additionalFiles {
-		sourcesJar sourcesJar
-	}
-	gameVersions = project.game_versions.split(",").toList()
-	loaders = ["fabric"]
-	dependencies {
-		required.project "fabric-api"
-	}
-	// Sync to Modrinth.
-	syncBodyFrom = providers.fileContents(layout.projectDirectory.file("docs/modrinth/README.md")).asText
 }
