@@ -1,9 +1,14 @@
+---
+title: Slots Checker
+order: 0
+---
+
 <!--suppress HtmlDeprecatedAttribute -->
 <div align="center">
 
 # Slots Checker
 
-<img src="icon.png" alt="Logo" width="128" height="128"/>
+<img src="/icon.png" alt="Logo" width="128" height="128"/>
 
 ![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_26.1.1-11304B?style=for-the-badge&labelColor=D0D5DA)
 
@@ -15,11 +20,11 @@
 [![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://github.com/ALiaoHaolong/slots-checker/wiki)
 [![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://github.com/ALiaoHaolong/slots-checker/issues)
 
-**🌍 [English](README.md) • [简体中文](README.zh_cn.md)**
+**🌍 [English](/introduction/slots-checker) • [简体中文](/zh/introduction/slots-checker)**
 
 </div>
 
-## Introduction
+---
 
 This mod provides a command to view and modify any player's inventory, hotbar, ender chest, armor, and offhand slots (requires level 4 admin privileges).
 
@@ -31,41 +36,34 @@ Important:
 
 - **Required on the server, optional on the client.**
 - For the time being, it is **not supported** to view or modify the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
-- [Creative inventory problem](docs/en/introduction/creative-inventory-problem.md).
+- [Creative inventory problem](/introduction/creative-inventory-problem).
 
 ## Commands
 
 1. `/slots-checker inventory <player>`  
    Open the player's inventory interface.  
-   <img src="docs/public/images/inventory.png" alt="Inventory" width="400"/>
+   <img src="/images/inventory.png" alt="Inventory" width="400"/>
 
 2. `/slots-checker hotbar <player>`  
    Open the player's hotbar interface.  
-   <img src="docs/public/images/hotbar.png" alt="Hotbar" width="400"/>
+   <img src="/images/hotbar.png" alt="Hotbar" width="400"/>
 
 3. `/slots-checker ender <player>`  
    Open the player's ender chest interface.  
-   <img src="docs/public/images/ender.png" alt="Ender Chest" width="400"/>
+   <img src="/images/ender.png" alt="Ender Chest" width="400"/>
 
 4. `/slots-checker armor <player>`  
    Open the player's armor interface.  
    The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
    This interface has no item restrictions. Any item can be directly placed in the armor slot.  
-   <img src="docs/public/images/armor.png" alt="Armor" width="400"/>
+   <img src="/images/armor.png" alt="Armor" width="400"/>
 
 5. `/slots-checker offhand <player>`  
    Open the player's offhand interface.  
    The last 8 fields are invalid.  
-   <img src="docs/public/images/offhand.png" alt="Offhand" width="400"/>
-
-## Author
-
-廖浩龙
-
-- aliaohaolong@qq.com
-- aliaohaolong@gmail.com
+   <img src="/images/offhand.png" alt="Offhand" width="400"/>
 
 ## License
 
-- Current version (v2 and later): Open source, licensed under the [Apache License 2.0](LICENSE).
+- Current version (v2 and later): Open source, licensed under the <a href="https://github.com/ALiaoHaolong/slots-checker/blob/master/LICENSE" target="_blank" rel="noreferrer" class="vp-external-link-icon">Apache License 2.0</a>.
 - Historical versions (v1 and earlier): Closed-source development; previously declared under the MIT License but source code was not publicly released.

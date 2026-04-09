@@ -19,3 +19,9 @@ run/
 # version
 
 version/
+
+# vitepress
+
+node_modules/
+docs/.vitepress/dist/
+docs/.vitepress/cache/

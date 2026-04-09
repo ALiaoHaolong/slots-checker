@@ -1,0 +1,16 @@
+.vp-doc h1 {
+    margin: 0 0 16px 0;
+}
+
+.vp-doc p {
+    margin: 0 0 16px 0;
+}
+
+.vp-doc img {
+    display: inline-block !important;
+    margin: 0 !important;
+}
+
+.vp-doc p a img {
+    margin: 0 2px !important;
+}
