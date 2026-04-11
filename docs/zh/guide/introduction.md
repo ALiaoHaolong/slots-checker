@@ -1,5 +1,5 @@
 ---
-title: Slots Checker
+title: 介绍
 order: 0
 ---
 
@@ -20,7 +20,7 @@ order: 0
 [![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://github.com/ALiaoHaolong/slots-checker/wiki)
 [![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://github.com/ALiaoHaolong/slots-checker/issues)
 
-**🌍 [English](/introduction/slots-checker) • [简体中文](/zh/introduction/slots-checker)**
+**🌍 [English](/guide/introduction) • [简体中文](/zh/guide/introduction)**
 
 </div>
 
@@ -36,7 +36,7 @@ order: 0
 
 - **服务端必装，客户端选装。**
 - 暂**不支持**查看和修改离线玩家的数据（离线玩家指的是当前不在游戏内的玩家，而不是指通过离线登陆方式进入游戏的玩家）。
-- [创造模式背包问题](/zh/introduction/creative-inventory-problem)。
+- [创造模式背包问题](/zh/guide/creative-inventory-problem)。
 
 ## 命令
 

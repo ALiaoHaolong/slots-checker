@@ -46,5 +46,5 @@ order: 2
 ## 参考
 
 - Minecraft 1.18 源代码
-- [MC-206074](https://bugs.mojang.com/browse/MC/issues/MC-206074)
-- [MC-219018](https://bugs.mojang.com/browse/MC/issues/MC-219018)
+- <a href="https://bugs.mojang.com/browse/MC/issues/MC-206074" target="_blank" rel="noreferrer" class="vp-external-link-icon">MC-206074</a>
+- <a href="https://bugs.mojang.com/browse/MC/issues/MC-219018" target="_blank" rel="noreferrer" class="vp-external-link-icon">MC-219018</a>

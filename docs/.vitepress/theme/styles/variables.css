@@ -1,13 +1,13 @@
 :root {
     /* 渐变色标题 */
     --vp-home-hero-name-color: transparent;
-    --vp-home-hero-name-background: linear-gradient(35deg, #80A1BD, #204671);
+    --vp-home-hero-name-background: linear-gradient(35deg, #8DBCDD, #134371);
 
     /* 渐变色图标背景 */
-    --vp-home-hero-image-background-image: linear-gradient(135deg, #9DC5D9, #9DC5D9);
+    --vp-home-hero-image-background-image: linear-gradient(45deg, #1961A3, #1961A3);
     --vp-home-hero-image-filter: blur(68px);
 }
 
 .dark {
-    --vp-home-hero-name-background: linear-gradient(to right bottom, #FFFDFF, #80A1BD);
+    --vp-home-hero-name-background: linear-gradient(35deg, #FFFDFF, #6499C0);
 }

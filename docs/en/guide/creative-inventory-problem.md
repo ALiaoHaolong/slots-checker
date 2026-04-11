@@ -10,7 +10,7 @@ order: 2
 ## Affected Versions
 
 Starting from the version adapted by this mod (1.18) (at least).  
-Fixed in 24w33a (the development version of 1.21.2.
+Fixed in 24w33a (the development version of 1.21.2).
 
 ## Analysis
 
@@ -46,5 +46,5 @@ In summary, after repeated consideration, I have decided not to handle this issu
 ## References
 
 - Minecraft 1.18 source code
-- [MC-206074](https://bugs.mojang.com/browse/MC/issues/MC-206074)
-- [MC-219018](https://bugs.mojang.com/browse/MC/issues/MC-219018)
+- <a href="https://bugs.mojang.com/browse/MC/issues/MC-206074" target="_blank" rel="noreferrer" class="vp-external-link-icon">MC-206074</a>
+- <a href="https://bugs.mojang.com/browse/MC/issues/MC-219018" target="_blank" rel="noreferrer" class="vp-external-link-icon">MC-219018</a>

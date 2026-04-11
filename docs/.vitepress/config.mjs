@@ -62,8 +62,14 @@ const vitePressI18nOptions = {
   themeConfig: {
     en: {
       nav: [
-        { text: 'Introduction', link: '/introduction/slots-checker' },
-        { text: 'Downloads', link: 'https://modrinth.com/mod/slots-checker/versions' },
+        { text: 'Introduction', link: '/guide/introduction' },
+        {
+          text: 'Downloads',
+          items: [
+            { text: 'Modrinth', link: 'https://modrinth.com/mod/slots-checker/versions'},
+            { text: 'CurseForge', link: 'https://www.curseforge.com/minecraft/mc-mods/slots-checker/files/all' },
+          ]
+        },
         { text: 'Changelogs', link: '/changelogs/1.0.0', activeMatch: '/changelogs/' },
       ],
       footer: {
@@ -76,8 +82,14 @@ const vitePressI18nOptions = {
     },
     zh: {
       nav: [
-        { text: '简介', link: '/zh/introduction/slots-checker' },
-        { text: '下载', link: 'https://modrinth.com/mod/slots-checker/versions' },
+        { text: '简介', link: '/zh/guide/introduction' },
+        {
+          text: '下载',
+          items: [
+            { text: 'Modrinth', link: 'https://modrinth.com/mod/slots-checker/versions'},
+            { text: 'CurseForge', link: 'https://www.curseforge.com/minecraft/mc-mods/slots-checker/files/all' },
+          ]
+        },
         { text: '更新日志', link: '/zh/changelogs/1.0.0', activeMatch: '/changelogs/' },
       ],
       footer: {

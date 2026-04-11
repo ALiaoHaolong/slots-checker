@@ -1,5 +1,5 @@
 ---
-title: Slots Checker
+title: Introduction
 order: 0
 ---
 
@@ -20,7 +20,7 @@ order: 0
 [![Wiki](https://img.shields.io/badge/WIKI-D0D5DA?style=for-the-badge&logo=wikipedia&logoColor=black)](https://github.com/ALiaoHaolong/slots-checker/wiki)
 [![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://github.com/ALiaoHaolong/slots-checker/issues)
 
-**🌍 [English](/introduction/slots-checker) • [简体中文](/zh/introduction/slots-checker)**
+**🌍 [English](/guide/introduction) • [简体中文](/zh/guide/introduction)**
 
 </div>
 
@@ -36,7 +36,7 @@ Important:
 
 - **Required on the server, optional on the client.**
 - For the time being, it is **not supported** to view or modify the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
-- [Creative inventory problem](/introduction/creative-inventory-problem).
+- [Creative inventory problem](/guide/creative-inventory-problem).
 
 ## Commands
 
