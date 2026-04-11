@@ -124,7 +124,7 @@ const vitePressSidebarCommonOptions = {
   useTitleFromFrontmatter: true,
   // useFolderLinkFromIndexFile: false,
   useFolderTitleFromIndexFile: true,
-  // frontmatterTitleFieldName: 'title',
+  frontmatterTitleFieldName: 'sidebarTitle', // sidebarTitle 不存在时使用 title 作为后备
   //
   // ============ [ GETTING MENU LINK ] ============
   // useFolderLinkFromSameNameSubFile: false,
