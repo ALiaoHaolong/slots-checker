@@ -120,7 +120,7 @@ const vitePressSidebarCommonOptions = {
   // rootGroupCollapsed: false,
   //
   // ============ [ GETTING MENU TITLE ] ============
-  // useTitleFromFileHeading: true,
+  useTitleFromFileHeading: true,
   useTitleFromFrontmatter: true,
   // useFolderLinkFromIndexFile: false,
   useFolderTitleFromIndexFile: true,
