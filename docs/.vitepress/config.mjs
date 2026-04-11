@@ -82,7 +82,7 @@ const vitePressI18nOptions = {
     },
     zh: {
       nav: [
-        { text: '简介', link: '/zh/guide/introduction' },
+        { text: '介绍', link: '/zh/guide/introduction' },
         {
           text: '下载',
           items: [
