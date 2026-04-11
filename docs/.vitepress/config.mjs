@@ -5,8 +5,8 @@ import { withI18n } from 'vitepress-i18n'
 // VitePress 基础配置 https://vitepress.dev/zh/
 const vitePressOptions = {
   // Site Metadata
-  title: 'Slots Checker',
-  titleTemplate: true,
+  title: 'Slots Checker', // 网站标题
+  titleTemplate: true, // 将网站标题作为页面标题后缀（页面标题与页面标题后缀一致时，不显示后缀）
   description: 'This mod provides a command to view and modify any player\'s inventory, hotbar, ender chest, armor, and offhand slots (requires level 4 admin privileges).',
   head: [
       [ 'link', { rel: 'icon', href: '/slots-checker/icon.png' } ],
@@ -53,7 +53,7 @@ const vitePressI18nOptions = {
   link: undefined,                    // Default
   lang: undefined,                    // Default
   title: undefined,                   // Default
-  titleTemplate: 'Slots Checker',     // Default
+  titleTemplate: undefined,           // Default
   description: {
     en: 'This mod provides a command to view and modify any player\'s inventory, hotbar, ender chest, armor, and offhand slots (requires level 4 admin privileges).',
     zh: '这个模组提供了一个命令，可查看和修改任何玩家的背包、快捷栏、末影箱、护甲以及副手格子（需要 4 级权限等级）。',
