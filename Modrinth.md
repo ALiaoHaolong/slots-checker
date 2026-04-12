@@ -5,7 +5,7 @@
 
 <img src="https://cdn.jsdelivr.net/gh/ALiaoHaolong/slots-checker@master/icon.png" alt="Logo" width="128" height="128"/>
 
-![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_26.1.1-11304B?style=for-the-badge&labelColor=D0D5DA)
+![Minecraft Support](https://img.shields.io/badge/SUPPORT_FOR_MC-1.18_~_26.1.2-11304B?style=for-the-badge&labelColor=D0D5DA)
 
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/1wrPNL41?style=flat-square&logo=modrinth&labelColor=D0D5DA&color=00af5c)](https://modrinth.com/mod/slots-checker)
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/1489337?style=flat-square&logo=curseforge&labelColor=D0D5DA&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/slots-checker)

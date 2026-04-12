@@ -33,5 +33,5 @@ features:
 
   - icon: 🧱
     title: 广泛的版本支持
-    details: '支持 Minecraft: Java 版的 1.18 至 26.1.1，适配几乎所有现代版本。'
+    details: '支持 Minecraft: Java 版的 1.18 至 26.1.2，适配几乎所有现代版本。'
 ---

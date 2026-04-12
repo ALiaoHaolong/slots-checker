@@ -23,7 +23,7 @@ support {
             versions "1.21.11"
         }
         v4 {
-            versions "26.1", "26.1.1"
+            versions "26.1", "26.1.1", "26.1.2"
         }
     }
 }
