@@ -31,7 +31,7 @@ support {
 modrinth {
     token = providers.environmentVariable("MODRINTH_TOKEN")
     projectId = project.modrinth_id
-    description = providers.fileContents(layout.projectDirectory.file("docs/modrinth/README.md")).asText
+    description = providers.fileContents(layout.projectDirectory.file("Modrinth.md")).asText
     debugMode = false
 }
 
@@ -45,7 +45,7 @@ support.versions.forEach {version -> {
         additionalFiles {
             sourcesJar provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${getGameVersions().get().getFirst()}-sources.jar") } as Provider<RegularFile>
         }
-        changelog = providers.fileContents(layout.projectDirectory.file("docs/changelogs/${project.mod_version}.md")).asText
+        changelog = providers.fileContents(layout.projectDirectory.file("docs/en/changelogs/${project.mod_version}.md")).asText.get().lines().toList().drop(4).join("\n").trim()
         versionType = "release"
         loaders = ["fabric"]
         dependencies {
