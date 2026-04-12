@@ -7,7 +7,7 @@
 
 ## Branch Info
 
-This is the **v4** branch, containing the mod source code for Slots Checker supporting Minecraft 26.1 ~ 26.1.1.
+This is the **v4** branch, containing the mod source code for Slots Checker supporting Minecraft 26.1 ~ 26.1.2.
 
 For full documentation, changelogs, etc., please see:
 
