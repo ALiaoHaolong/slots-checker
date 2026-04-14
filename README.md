@@ -7,7 +7,10 @@
 
 ## Branch Info
 
-This is the **master** branch, containing the Mod Publisher tool and Slots Checker homepage sources.
+This is the **master** branch. It contains:
+
+- The publishing script (powered by [Mc Mod Dispatcher](https://github.com/ALiaoHaolong/mc-mod-dispatcher))
+- The Slots Checker homepage sources
 
 For full documentation, changelogs, etc., please see:
 
