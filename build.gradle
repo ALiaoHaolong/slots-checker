@@ -1,55 +1,30 @@
-import pers.liaohaolong.modrinthpublisher.ModrinthTask
+import com.github.aliaohaolong.mcmoddispatcher.ModrinthTask
 
 plugins {
-    id 'java'
-    id 'pers.liaohaolong.modrinth-publisher'
-}
-
-repositories {
-    mavenCentral()
-}
-
-support {
-    versions {
-        v1 {
-            versions "1.18", "1.18.1", "1.18.2"
-        }
-        v2 {
-            versions "1.19", "1.19.1", "1.19.2", "1.19.3", "1.19.4",
-                    "1.20", "1.20.1", "1.20.2", "1.20.3", "1.20.4", "1.20.5", "1.20.6",
-                    "1.21", "1.21.1", "1.21.2", "1.21.3", "1.21.4", "1.21.5", "1.21.6", "1.21.7", "1.21.8", "1.21.9", "1.21.10"
-        }
-        v3 {
-            versions "1.21.11"
-        }
-        v4 {
-            versions "26.1", "26.1.1", "26.1.2"
-        }
-    }
+    id 'com.github.aliaohaolong.mc-mod-dispatcher' version '1.1.0'
 }
 
 modrinth {
-    token = providers.environmentVariable("MODRINTH_TOKEN")
     projectId = project.modrinth_id
-    description = providers.fileContents(layout.projectDirectory.file("Modrinth.md")).asText
-    debugMode = false
-}
-
-support.versions.forEach {version -> {
-    tasks.register("modrinth-${version.name}", ModrinthTask) {
-        group("publish")
-        gameVersions = version.versions
-        versionNumber = provider { "fabric-${project.mod_version}-mc${getGameVersions().get().getFirst()}".toString() }
-        versionName = provider { "${project.mod_name} ${project.mod_version} for Fabric ${getGameVersions().get().getFirst()}".toString() }
-        primaryFile = provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${getGameVersions().get().getFirst()}.jar") }
-        additionalFiles {
-            sourcesJar provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${getGameVersions().get().getFirst()}-sources.jar") } as Provider<RegularFile>
-        }
-        changelog = providers.fileContents(layout.projectDirectory.file("docs/en/changelogs/${project.mod_version}.md")).asText.get().lines().toList().drop(4).join("\n").trim()
-        versionType = "release"
-        loaders = ["fabric"]
-        dependencies {
-            required "fabric-api"
-        }
+    versionName = provider { "${project.mod_name} ${project.mod_version} for Fabric ${ModrinthTask.getCurrentGameVersions(project).getFirst()}".toString() }
+    versionNumber = provider { "fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}".toString() }
+    changelog = providers.fileContents(layout.projectDirectory.file("docs/en/changelogs/${project.mod_version}.md")).asText.get().lines().toList().drop(4).join("\n").trim()
+    dependencies {
+        required "fabric-api"
     }
-}}
+    versionBundles {
+        versionBundle "1.18", "1.18.1", "1.18.2"
+        versionBundle "1.19", "1.19.1", "1.19.2", "1.19.3", "1.19.4",
+                "1.20", "1.20.1", "1.20.2", "1.20.3", "1.20.4", "1.20.5", "1.20.6",
+                "1.21", "1.21.1", "1.21.2", "1.21.3", "1.21.4", "1.21.5", "1.21.6", "1.21.7", "1.21.8", "1.21.9", "1.21.10"
+        versionBundle "1.21.11"
+        versionBundle "26.1", "26.1.1", "26.1.2"
+    }
+    loaders = [ "fabric" ]
+    primaryFile = provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}.jar") }
+    additionalFiles {
+        sourcesJar provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}-sources.jar") } as Provider<RegularFile>
+    }
+    syncBodyFrom = providers.fileContents(layout.projectDirectory.file("Modrinth.md")).asText
+    debugMode = true
+}
