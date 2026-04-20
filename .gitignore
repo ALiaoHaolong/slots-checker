@@ -16,10 +16,6 @@ classes/
 
 run/
 
-# version
-
-version/
-
 # vitepress
 
 node_modules/
