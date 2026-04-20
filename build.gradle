@@ -26,5 +26,4 @@ modrinth {
         sourcesJar provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}-sources.jar") } as Provider<RegularFile>
     }
     syncBodyFrom = providers.fileContents(layout.projectDirectory.file("Modrinth.md")).asText
-    debugMode = true
 }
