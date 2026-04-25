@@ -68,6 +68,7 @@ const vitePressI18nOptions = {
           items: [
             { text: 'Modrinth', link: 'https://modrinth.com/mod/slots-checker/versions'},
             { text: 'CurseForge', link: 'https://www.curseforge.com/minecraft/mc-mods/slots-checker/files/all' },
+            { text: 'MC百科', link: 'https://www.mcmod.cn/download/8936.html' }
           ]
         },
         { text: 'Changelogs', link: '/changelogs/1.0.0', activeMatch: '/changelogs/' },
@@ -88,6 +89,7 @@ const vitePressI18nOptions = {
           items: [
             { text: 'Modrinth', link: 'https://modrinth.com/mod/slots-checker/versions'},
             { text: 'CurseForge', link: 'https://www.curseforge.com/minecraft/mc-mods/slots-checker/files/all' },
+            { text: 'MC百科', link: 'https://www.mcmod.cn/download/8936.html' }
           ]
         },
         { text: '更新日志', link: '/zh/changelogs/1.0.0', activeMatch: '/changelogs/' },
