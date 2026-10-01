@@ -33,5 +33,5 @@ features:
 
   - icon: 🧱
     title: Extensive Version Support
-    details: 'Supports Minecraft: Java Edition from 1.18 to 26.2, covering nearly all modern versions.'
+    details: 'Supports Minecraft: Java Edition from 1.18 to 26.3, covering nearly all modern versions.'
 ---
