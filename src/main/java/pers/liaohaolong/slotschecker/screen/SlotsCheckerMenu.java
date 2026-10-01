@@ -84,4 +84,9 @@ public class SlotsCheckerMenu extends ChestMenu {
         return target;
     }
 
+    @Override
+    public boolean stillValid(@NonNull Player player) {
+        return true;
+    }
+
 }
