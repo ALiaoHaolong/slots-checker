@@ -7,7 +7,7 @@
 
 ## Branch Info
 
-This is the **v5** branch, containing the mod source code for Slots Checker supporting Minecraft 26.2.
+This is the **v5** branch, containing the mod source code for Slots Checker supporting Minecraft 26.2 ~ 26.3.
 
 For full documentation, changelogs, etc., please see:
 
