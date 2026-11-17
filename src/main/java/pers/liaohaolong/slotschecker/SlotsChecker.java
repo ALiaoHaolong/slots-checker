@@ -16,148 +16,114 @@
 
 package pers.liaohaolong.slotschecker;
 
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
-import org.jetbrains.annotations.NotNull;
 import pers.liaohaolong.slotschecker.inventory.OffsetPlayerInventory;
-import pers.liaohaolong.slotschecker.screen.ConnectedScreenHandler;
-
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import pers.liaohaolong.slotschecker.screen.SlotsCheckerScreenHandler;
 
 /**
- * <h1>Slots Checker</h1>
+ * <h3>SlotsChecker</h3>
  *
- * <p>这个模组提供了一个命令，可查看和修改任何玩家的背包、快捷栏、末影箱、护甲以及副手格子（需要 4 级权限等级）。</p>
- *
- * @author 廖浩龙
+ * <p>注册命令，注册事件监听。</p>
  */
 public class SlotsChecker implements ModInitializer {
 
-	@SuppressWarnings("unused")
     public static final String MOD_ID = "slots-checker";
 
-	@Override
-	public void onInitialize() {
-		// inventory
-		LiteralArgumentBuilder<ServerCommandSource> inventoryCommand = literal("inventory")
-				.requires(source -> source.hasPermissionLevel(4))
-				.then(argument("player", EntityArgumentType.player())
-						.executes(context -> openInventoryChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+    private static final int PERMISSION_VIEW = 2;
+    private static final int PERMISSION_EDIT = 4;
 
-		// hotbar
-		LiteralArgumentBuilder<ServerCommandSource> hotbarSubCommand = literal("hotbar")
-				.requires(source -> source.hasPermissionLevel(4))
-				.then(argument("player", EntityArgumentType.player())
-						.executes(context -> openHotbarChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+    public static MinecraftServer server;
 
-		// ender chest
-		LiteralArgumentBuilder<ServerCommandSource> enderSubCommand = literal("ender")
-				.requires(source ->  source.hasPermissionLevel(4))
-				.then(argument("player", EntityArgumentType.player())
-						.executes(context -> openEnderChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+    @Override
+    public void onInitialize() {
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> SlotsChecker.server = server);
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> SlotsChecker.server = null);
 
-		// armor
-		LiteralArgumentBuilder<ServerCommandSource> armorSubCommand = literal("armor")
-				.requires(source -> source.hasPermissionLevel(4))
-				.then(argument("player", EntityArgumentType.player())
-						.executes(context -> openArmorChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> dispatcher.register(
+                CommandManager.literal(MOD_ID)
+                        .requires(source -> source.hasPermissionLevel(PERMISSION_VIEW))
+                        .then(buildSubCommand("armor"))
+                        .then(buildSubCommand("ender"))
+                        .then(buildSubCommand("hotbar"))
+                        .then(buildSubCommand("inventory"))
+                        .then(buildSubCommand("offhand"))
+        ));
 
-		// offhand
-		LiteralArgumentBuilder<ServerCommandSource> inventorySubCommand = literal("offhand")
-				.requires(source -> source.hasPermissionLevel(4))
-				.then(argument("player", EntityArgumentType.player())
-						.executes(context -> openOffhandChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
-
-		// slots-checker
-		LiteralArgumentBuilder<ServerCommandSource> rootCommand = literal("slots-checker")
-				.requires(source -> source.hasPermissionLevel(4))
-				.then(enderSubCommand)
-				.then(hotbarSubCommand)
-				.then(inventoryCommand)
-				.then(armorSubCommand)
-				.then(inventorySubCommand);
-
-		// register command
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> dispatcher.register(rootCommand));
-
-		// close all check interfaces when the player being checked is offline
-		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> server.getPlayerManager().getPlayerList().forEach(op -> {
-            // ignore the player who is being checked
-            if (handler.getPlayer().getUuid().equals(op.getUuid()))
-                return;
-            // is a supervisor
-            if (op.currentScreenHandler instanceof ConnectedScreenHandler connectedScreenHandler) {
-                // is checking the disconnected player
-                if (connectedScreenHandler.getTarget().equals(handler.getPlayer().getUuid())) {
-                    op.closeHandledScreen();
-                }
-            }
+        ServerPlayerEvents.AFTER_RESPAWN.register(((oldPlayer, newPlayer, alive) -> {
+            // 获取服务器实例
+            MinecraftServer server = newPlayer.getServer();
+            // 遍历玩家，判断有没有玩家正在观察当前玩家
+            assert server != null;
+            server.getPlayerManager().getPlayerList().forEach(serverPlayerEntity -> {
+                // 如果该玩家是观察者
+                if (serverPlayerEntity.currentScreenHandler instanceof SlotsCheckerScreenHandler slotsCheckerScreenHandler)
+                    // 如果该玩家观察的对象是当前重生的玩家
+                    if (slotsCheckerScreenHandler.getTargetUUID().equals(newPlayer.getUuid()))
+                        // 如果正在观察的是 OffsetPlayerInventory，即 armor、hotbar、inventory 或 offhand 槽位
+                        if (slotsCheckerScreenHandler.getInventory() instanceof OffsetPlayerInventory offsetPlayerInventory)
+                            // 更新 inventory 绑定（重生时，旧玩家实体被丢弃，需要换绑至新玩家实体）
+                            offsetPlayerInventory.setInventory(newPlayer.getInventory());
+            });
         }));
-	}
+    }
 
-	public static ServerPlayerEntity getSourcePlayer(@NotNull CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-		return context.getSource().getPlayer();
-	}
+    private static ArgumentBuilder<ServerCommandSource, ?> buildSubCommand(String slotType) {
+        return CommandManager.literal(slotType)
+                .then(CommandManager.argument("player", EntityArgumentType.player())
+                        .executes(context -> execute(context, slotType, true))
+                        .then(CommandManager.literal("view")
+                                .executes(context -> execute(context, slotType, true))
+                        )
+                        .then(CommandManager.literal("edit")
+                                .requires(source -> source.hasPermissionLevel(PERMISSION_EDIT))
+                                .executes(context -> execute(context, slotType, false))
+                        )
+                );
+    }
 
-	public static ServerPlayerEntity getTargetPlayer(@NotNull CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-		return context.getArgument("player", EntitySelector.class).getPlayer(context.getSource());
-	}
+    private static int execute(CommandContext<ServerCommandSource> context, String slotType, boolean readOnly) throws CommandSyntaxException {
+        ServerPlayerEntity source = context.getSource().getPlayer();
+        ServerPlayerEntity target = context.getArgument("player", EntitySelector.class).getPlayer(context.getSource());
 
-	public static int openEnderChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
-		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, target.getEnderChestInventory(), 3, target.getUuid()),
-				new TranslatableText("container.ender_checker", target.getEntityName())
-		));
-		return 1;
-	}
+        switch (slotType) {
+            case "armor" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
+                    (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 36), 1, target.getUuid(), slotType, readOnly),
+                    new TranslatableText("container.armor_checker", target.getEntityName())
+            ));
+            case "ender" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
+                    (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, target.getEnderChestInventory(), 3, target.getUuid(), slotType, readOnly),
+                    new TranslatableText("container.ender_checker", target.getEntityName())
+            ));
+            case "hotbar" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
+                    (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 0, 9), 1, target.getUuid(), slotType, readOnly),
+                    new TranslatableText("container.hotbar_checker", target.getEntityName())
+            ));
+            case "inventory" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
+                    (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 27, 9, 36), 3, target.getUuid(), slotType, readOnly),
+                    new TranslatableText("container.inventory_checker", target.getEntityName())
+            ));
+            case "offhand" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
+                    (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 41), 1, target.getUuid(), slotType, readOnly),
+                    new TranslatableText("container.offhand_checker", target.getEntityName())
+            ));
+        }
 
-	public static int openHotbarChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
-		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 0, 9), 1, target.getUuid()),
-				new TranslatableText("container.hotbar_checker", target.getEntityName())
-		));
-		return 1;
-	}
-
-	public static int openInventoryChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
-		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 27, 9, 36), 3, target.getUuid()),
-				new TranslatableText("container.inventory_checker", target.getEntityName())
-		));
-		return 1;
-	}
-
-	public static int openArmorChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
-		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 36), 1, target.getUuid()),
-				new TranslatableText("container.armor_checker", target.getEntityName())
-		));
-		return 1;
-	}
-
-	public static int openOffhandChecker(@NotNull ServerPlayerEntity source, @NotNull ServerPlayerEntity target) {
-		source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-				(syncId, inv, player) -> new ConnectedScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 41), 1, target.getUuid()),
-				new TranslatableText("container.offhand_checker", target.getEntityName())
-		));
-		return 1;
-	}
+        return 1;
+    }
 
 }

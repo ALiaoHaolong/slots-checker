@@ -37,7 +37,7 @@ public class OffsetPlayerInventory implements Inventory, Nameable {
     /**
      * 被映射的 PlayerInventory
      */
-    private final PlayerInventory inventory;
+    private PlayerInventory inventory;
 
     /**
      * 此界面的最大槽位数（实际使用时，受 GenericContainerScreenHandler 影响，该值总为 9 的倍数）
@@ -165,19 +165,17 @@ public class OffsetPlayerInventory implements Inventory, Nameable {
 
     @Override
     public void markDirty() {
-        // 直接调用 PlayerInventory
         inventory.markDirty();
     }
 
     /**
-     * 判断玩家是否可以访问这个 Inventory，通常用来判断玩家是否过远或容器是否被破坏
-     * @param player 玩家
+     * 判断玩家是否可以访问当前的 Inventory
+     * @param player 访问的玩家
      * @return 玩家是否可以访问这个 Inventory
      */
     @Override
     public boolean canPlayerUse(PlayerEntity player) {
-        // 较原始 PlayerInventory，移除了距离检测
-        return !inventory.player.isRemoved();
+        return inventory.canPlayerUse(player);
     }
 
     /**
@@ -194,8 +192,11 @@ public class OffsetPlayerInventory implements Inventory, Nameable {
      */
     @Override
     public Text getName() {
-        // 直接调用 PlayerInventory
         return inventory.getName();
+    }
+
+    public void setInventory(PlayerInventory inventory) {
+        this.inventory = inventory;
     }
 
     public int getMaxSize() {
