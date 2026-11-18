@@ -16,150 +16,113 @@
 
 package pers.liaohaolong.slotschecker;
 
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.selector.EntitySelector;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.permissions.PermissionCheck;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.MenuType;
-import org.jetbrains.annotations.NotNull;
 import pers.liaohaolong.slotschecker.inventory.OffsetInventory;
 import pers.liaohaolong.slotschecker.screen.SlotsCheckerMenu;
 
-import static net.minecraft.commands.Commands.argument;
-import static net.minecraft.commands.Commands.literal;
-
 /**
- * <h1>Slots Checker</h1>
+ * <h3>SlotsChecker</h3>
  *
- * <p>这个模组提供了一个命令，可查看和修改任何玩家的背包、快捷栏、末影箱、护甲以及副手格子（需要 4 级权限等级）。</p>
- *
- * @author 廖浩龙
+ * <p>注册命令，注册事件监听。</p>
  */
 @SuppressWarnings("unused")
 public class SlotsChecker implements ModInitializer {
 
-	@SuppressWarnings("unused")
     public static final String MOD_ID = "slots-checker";
 
-	@Override
-	public void onInitialize() {
-		// inventory
-		LiteralArgumentBuilder<CommandSourceStack> inventoryCommand = literal("inventory")
-				.requires(Commands.hasPermission(Commands.LEVEL_OWNERS))
-				.then(argument("player", EntityArgument.player())
-						.executes(context -> openInventoryChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+    private static final PermissionCheck PERMISSION_VIEW = Commands.LEVEL_GAMEMASTERS;
+    private static final PermissionCheck PERMISSION_EDIT = Commands.LEVEL_OWNERS;
 
-		// hotbar
-		LiteralArgumentBuilder<CommandSourceStack> hotbarSubCommand = literal("hotbar")
-				.requires(Commands.hasPermission(Commands.LEVEL_OWNERS))
-				.then(argument("player", EntityArgument.player())
-						.executes(context -> openHotbarChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+    public static MinecraftServer server;
 
-		// ender chest
-		LiteralArgumentBuilder<CommandSourceStack> enderSubCommand = literal("ender")
-				.requires(Commands.hasPermission(Commands.LEVEL_OWNERS))
-				.then(argument("player", EntityArgument.player())
-						.executes(context -> openEnderChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+    @Override
+    public void onInitialize() {
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> SlotsChecker.server = server);
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> SlotsChecker.server = null);
 
-		// armor
-		LiteralArgumentBuilder<CommandSourceStack> armorSubCommand = literal("armor")
-				.requires(Commands.hasPermission(Commands.LEVEL_OWNERS))
-				.then(argument("player", EntityArgument.player())
-						.executes(context -> openArmorChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(
+                Commands.literal(MOD_ID)
+                        .requires(Commands.hasPermission(PERMISSION_VIEW))
+                        .then(buildSubCommand("armor"))
+                        .then(buildSubCommand("ender"))
+                        .then(buildSubCommand("hotbar"))
+                        .then(buildSubCommand("inventory"))
+                        .then(buildSubCommand("offhand"))
+        ));
 
-		// offhand
-		LiteralArgumentBuilder<CommandSourceStack> inventorySubCommand = literal("offhand")
-				.requires(Commands.hasPermission(Commands.LEVEL_OWNERS))
-				.then(argument("player", EntityArgument.player())
-						.executes(context -> openOffhandChecker(getSourcePlayer(context), getTargetPlayer(context)))
-				);
-
-		// slots-checker
-		LiteralArgumentBuilder<CommandSourceStack> rootCommand = literal("slots-checker")
-				.requires(Commands.hasPermission(Commands.LEVEL_OWNERS))
-				.then(enderSubCommand)
-				.then(hotbarSubCommand)
-				.then(inventoryCommand)
-				.then(armorSubCommand)
-				.then(inventorySubCommand);
-
-		// register command
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(rootCommand));
-
-		// close all check interfaces when the player being checked is offline
-		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> server.getPlayerList().getPlayers().forEach(op -> {
-            // ignore the player who is being checked
-            if (handler.getPlayer().getUUID().equals(op.getUUID()))
-                return;
-            // is a supervisor
-            if (op.containerMenu instanceof SlotsCheckerMenu slotsCheckerMenu) {
-                // is checking the disconnected player
-                if (slotsCheckerMenu.getTarget().equals(handler.getPlayer().getUUID())) {
-                    op.closeContainer();
-                }
-            }
+        ServerPlayerEvents.AFTER_RESPAWN.register(((oldPlayer, newPlayer, alive) -> {
+            // 遍历玩家，判断有没有玩家正在观察当前玩家
+            server.getPlayerList().getPlayers().forEach(serverPlayer -> {
+                // 如果该玩家是观察者
+                if (serverPlayer.containerMenu instanceof SlotsCheckerMenu slotsCheckerMenu)
+                    // 如果该玩家观察的对象是当前重生的玩家
+                    if (slotsCheckerMenu.getTargetUUID().equals(newPlayer.getUUID()))
+                        // 如果正在观察的是 OffsetInventory，即 armor、hotbar、inventory 或 offhand 槽位
+                        if (slotsCheckerMenu.getContainer() instanceof OffsetInventory offsetInventory)
+                            // 更新 inventory 绑定（重生时，旧玩家实体被丢弃，需要换绑至新玩家实体）
+                            offsetInventory.setInventory(newPlayer.getInventory());
+            });
         }));
-	}
+    }
 
-	public static ServerPlayer getSourcePlayer(@NotNull CommandContext<CommandSourceStack> context) {
-		return context.getSource().getPlayer();
-	}
+    private static ArgumentBuilder<CommandSourceStack, ?> buildSubCommand(String slotType) {
+        return Commands.literal(slotType)
+                .then(Commands.argument("player", EntityArgument.player())
+                        .executes(context -> execute(context, slotType, true))
+                        .then(Commands.literal("view")
+                                .executes(context -> execute(context, slotType, true))
+                        )
+                        .then(Commands.literal("edit")
+                                .requires(Commands.hasPermission(PERMISSION_EDIT))
+                                .executes(context -> execute(context, slotType, false))
+                        )
+                );
+    }
 
-	public static ServerPlayer getTargetPlayer(@NotNull CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-		return context.getArgument("player", EntitySelector.class).findSinglePlayer(context.getSource());
-	}
+    private static int execute(CommandContext<CommandSourceStack> context, String slotType, boolean readOnly) throws CommandSyntaxException {
+        ServerPlayer source = context.getSource().getPlayerOrException();
+        ServerPlayer target = context.getArgument("player", EntitySelector.class).findSinglePlayer(context.getSource());
 
-	public static int openEnderChecker(@NotNull ServerPlayer source, @NotNull ServerPlayer target) {
-		source.openMenu(new SimpleMenuProvider(
-				(syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x3, syncId, inv, target.getEnderChestInventory(), 3, target.getUUID()),
-				Component.translatable("container.ender_checker", target.getName())
-		));
-		return 1;
-	}
+        switch (slotType) {
+            case "armor" -> source.openMenu(new SimpleMenuProvider(
+                    (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 40, 36), 1, target.getUUID(), slotType, readOnly),
+                    Component.translatable("container.armor_checker", target.getName())
+            ));
+            case "ender" -> source.openMenu(new SimpleMenuProvider(
+                    (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x3, syncId, inv, target.getEnderChestInventory(), 3, target.getUUID(), slotType, readOnly),
+                    Component.translatable("container.ender_checker", target.getName())
+            ));
+            case "hotbar" -> source.openMenu(new SimpleMenuProvider(
+                    (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 0, 9), 1, target.getUUID(), slotType, readOnly),
+                    Component.translatable("container.hotbar_checker", target.getName())
+            ));
+            case "inventory" -> source.openMenu(new SimpleMenuProvider(
+                    (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x3, syncId, inv, new OffsetInventory(target.getInventory(), 27, 9, 36), 3, target.getUUID(), slotType, readOnly),
+                    Component.translatable("container.inventory_checker", target.getName())
+            ));
+            case "offhand" -> source.openMenu(new SimpleMenuProvider(
+                    (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 40, 41), 1, target.getUUID(), slotType, readOnly),
+                    Component.translatable("container.offhand_checker", target.getName())
+            ));
+        }
 
-	public static int openHotbarChecker(@NotNull ServerPlayer source, @NotNull ServerPlayer target) {
-		source.openMenu(new SimpleMenuProvider(
-				(syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 0, 9), 1, target.getUUID()),
-				Component.translatable("container.hotbar_checker", target.getName())
-		));
-		return 1;
-	}
-
-	public static int openInventoryChecker(@NotNull ServerPlayer source, @NotNull ServerPlayer target) {
-		source.openMenu(new SimpleMenuProvider(
-				(syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x3, syncId, inv, new OffsetInventory(target.getInventory(), 27, 9, 36), 3, target.getUUID()),
-				Component.translatable("container.inventory_checker", target.getName())
-		));
-		return 1;
-	}
-
-	public static int openArmorChecker(@NotNull ServerPlayer source, @NotNull ServerPlayer target) {
-		source.openMenu(new SimpleMenuProvider(
-				(syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 40, 36), 1, target.getUUID()),
-				Component.translatable("container.armor_checker", target.getName())
-		));
-		return 1;
-	}
-
-	public static int openOffhandChecker(@NotNull ServerPlayer source, @NotNull ServerPlayer target) {
-		source.openMenu(new SimpleMenuProvider(
-				(syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 40, 41), 1, target.getUUID()),
-				Component.translatable("container.offhand_checker", target.getName())
-		));
-		return 1;
-	}
+        return 1;
+    }
 
 }

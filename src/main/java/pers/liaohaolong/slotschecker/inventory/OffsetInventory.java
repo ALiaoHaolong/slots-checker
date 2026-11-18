@@ -38,7 +38,7 @@ public class OffsetInventory implements Container, Nameable {
     /**
      * 被映射的 Inventory
      */
-    private final Inventory inventory;
+    private Inventory inventory;
 
     /**
      * 此界面的最大槽位数（实际使用时，受 ChestMenu 影响，该值总为 9 的倍数）
@@ -179,16 +179,6 @@ public class OffsetInventory implements Container, Nameable {
         return inventory.stillValid(player);
     }
 
-    @Override
-    public boolean canPlaceItem(int slot, @NonNull ItemStack itemStack) {
-        return slot < size;
-    }
-
-    @Override
-    public boolean canTakeItem(@NonNull Container into, int slot, @NonNull ItemStack itemStack) {
-        return slot < size;
-    }
-
     /**
      * 清空受此界面影响的槽位
      */
@@ -204,6 +194,10 @@ public class OffsetInventory implements Container, Nameable {
     @Override
     public @NonNull Component getName() {
         return inventory.getName();
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     public int getMaxSize() {
