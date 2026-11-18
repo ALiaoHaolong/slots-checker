@@ -16,6 +16,7 @@
 
 package pers.liaohaolong.slotschecker.screen;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +24,10 @@ import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.gamerules.GameRules;
 import org.jspecify.annotations.NonNull;
+import pers.liaohaolong.slotschecker.SlotsChecker;
 import pers.liaohaolong.slotschecker.inventory.OffsetInventory;
 
 import java.util.UUID;
@@ -35,53 +39,102 @@ import java.util.UUID;
  */
 public class SlotsCheckerMenu extends ChestMenu {
 
+    private final UUID targetUUID;
+
     /**
-     * 被检查者
+     * @param type 界面类型
+     * @param syncId 同步 ID
+     * @param inventory 检查者的背包
+     * @param container 被检查的 container
+     * @param rows 用于展示被检查的 container 的行数（一行 9 个槽位）
+     * @param targetUUID 被检查者的 UUID
+     * @param readOnly 是否为只读模式
      */
-    private final UUID target;
-
-    public SlotsCheckerMenu(MenuType<?> type, int syncId, Inventory inventory, Container container, int rows, UUID target) {
+    public SlotsCheckerMenu(MenuType<?> type, int syncId, Inventory inventory, Container container, int rows, UUID targetUUID, String slotType, boolean readOnly) {
         super(type, syncId, inventory, container, rows);
-        this.target = target;
+        this.targetUUID = targetUUID;
 
-        // 针对有 未使用的 Slots 的情况，super 中初始化的默认 Slots 无法配置 mayPlace 和 mayPickup，需要重新初始化。
-        if (container instanceof OffsetInventory offsetInventory && offsetInventory.getSize() < offsetInventory.getMaxSize()) {
-            // 清除默认 Slots
-            this.slots.clear();
-            this.lastSlots.clear();
-            this.remoteSlots.clear();
+        // 计算可以交互的槽位数
+        int size;
+        // 查看模式下，所有被检查槽位都禁止交互（除创造模式的中间复制操作）
+        if (readOnly)
+            size = 0;
+        // 编辑模式下，如果使用了 OffsetPlayerInventory，则使用实际可用的槽位数
+        else if (container instanceof OffsetInventory offsetPlayerInventory)
+            size = offsetPlayerInventory.getSize();
+        // 编辑模式下，如果未使用槽位偏移，则所有槽位都可交互
+        else
+            size = rows * 9;
 
-            // 重新初始化
-            // 设置 Container
-            for (int i = 0; i < this.getRowCount(); i++) {
-                for (int j = 0; j < 9; j++) {
-                    if (i * 9 + j < offsetInventory.getSize()) {
-                        // 正常使用的 Slot
-                        this.addSlot(new Slot(container, j + i * 9, 8 + j * 18, 18 + i * 18));
-                    } else {
-                        // 未使用的 Slot
-                        this.addSlot(new Slot(container, j + i * 9, 8 + j * 18, 18 + i * 18) {
-                            @Override
-                            public boolean mayPlace(final @NonNull ItemStack stack) {
-                                return false; // 禁止插入
-                            }
+        // 重新初始化 Slots
+        this.slots.clear(); // 唯一的槽位数据
+        this.lastSlots.clear(); // 上次同步给成就系统的缓存
+        this.remoteSlots.clear(); // 上次同步给客户端的内容缓存
 
-                            @Override
-                            public boolean mayPickup(final @NonNull Player playerEntity) {
-                                return false; // 禁止取出
-                            }
-                        });
-                    }
+        // 设置 Container
+        for (int i = 0; i < this.getRowCount(); i++) {
+            for (int j = 0; j < 9; j++) {
+                int index = j + i * 9;
+                int x = 8 + j * 18;
+                int y = 18 + i * 18;
+                if (index < size) {
+                    // 正常使用的 Slot
+                    this.addSlot(new Slot(container, index, x, y) {
+                        @Override
+                        public @NonNull ItemStack getItem() {
+                            return pauseInteraction() ? new ItemStack(Items.BARRIER) : super.getItem();
+                        }
+
+                        @Override
+                        public boolean mayPlace(@NonNull ItemStack itemStack) {
+                            return !pauseInteraction();
+                        }
+
+                        @Override
+                        public boolean mayPickup(@NonNull Player player) {
+                            return !pauseInteraction();
+                        }
+
+                        private boolean pauseInteraction() {
+                            // 从 MinecraftServer 中获取被检查者
+                            ServerPlayer target = SlotsChecker.server.getPlayerList().getPlayer(targetUUID);
+                            // 如果被检查者离线，则禁止交互
+                            if (target == null || target.hasDisconnected())
+                                return false;
+                            // 若为编辑模式，且查看非 ender 槽位，且被检查者死亡，且未开启死亡不掉落，则暂停交互
+                            return !readOnly && !slotType.equals("ender") && target.isDeadOrDying() && !SlotsChecker.server.getGameRules().get(GameRules.KEEP_INVENTORY);
+                        }
+                    });
+                } else {
+                    // 未使用的 Slot
+                    this.addSlot(new Slot(container, index, x, y) {
+                        @Override
+                        public boolean mayPlace(final @NonNull ItemStack stack) {
+                            return false; // 禁止插入
+                        }
+
+                        @Override
+                        public boolean mayPickup(final @NonNull Player playerEntity) {
+                            return false; // 禁止取出
+                        }
+                    });
                 }
             }
-            // 设置 Inventory
-            int inventoryTop = 18 + this.getRowCount() * 18 + 13;
-            this.addStandardInventorySlots(inventory, 8, inventoryTop);
         }
+        // 设置 Inventory
+        this.addStandardInventorySlots(inventory, 8, 18 + this.getRowCount() * 18 + 13);
     }
 
-    public UUID getTarget() {
-        return target;
+    @Override
+    public boolean stillValid(final @NonNull Player player) {
+        // 从 MinecraftServer 中获取被检查者
+        ServerPlayer target = SlotsChecker.server.getPlayerList().getPlayer(targetUUID);
+        // 如果被检查者离线，则关闭屏幕
+        return !(target == null || target.hasDisconnected());
+    }
+
+    public UUID getTargetUUID() {
+        return targetUUID;
     }
 
 }
