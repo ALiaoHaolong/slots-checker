@@ -3,7 +3,7 @@
 	"id": "slots-checker",
 	"version": "${version}",
 	"name": "Slots Checker",
-	"description": "This mod provides a command to view and modify any player's inventory, hotbar, ender chest, armor, and offhand slots (requires level 4 admin privileges).",
+	"description": "The admin can view or edit any player's inventory, hotbar, ender chest, armor, and offhand slots by command.",
 	"authors": [
 		{
 			"name": "廖浩龙",
