@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import pers.liaohaolong.slotschecker.screen.ConnectedScreenHandler;
+import pers.liaohaolong.slotschecker.screen.SlotsCheckerScreenHandler;
 
 /**
  * <h3>ScreenHandlerMixin</h3>
@@ -35,7 +35,7 @@ public class ScreenHandlerMixin {
 
     @Redirect(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/slot/Slot;getStack()Lnet/minecraft/item/ItemStack;"))
     private ItemStack insertItemMixin(Slot instance) {
-        if (getThis() instanceof ConnectedScreenHandler // 仅针对 Slots Checker 的 GUI
+        if (getThis() instanceof SlotsCheckerScreenHandler // 仅针对 Slots Checker 的 GUI
                 && !instance.canInsert(ItemStack.EMPTY)) { // 仅针对禁用插入槽位（实质上就是指禁用槽位）
             return ItemStack.EMPTY; // 返回空槽位，以阻止屏障槽位合并请求
         }
