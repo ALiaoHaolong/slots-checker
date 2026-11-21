@@ -1,12 +1,15 @@
 {
-  "container.ender_checker": "%s 的末影箱",
-  "container.hotbar_checker": "%s 的快捷栏",
-  "container.inventory_checker": "%s 的背包",
-  "container.armor_checker": "%s 的盔甲",
-  "container.offhand_checker": "%s 的副手",
-
-  "modmenu.nameTranslation.slots-checker": "Slots Checker",
+  "container.slots-checker.armor.edit": "✎ %s 的盔甲（编辑模式）",
+  "container.slots-checker.armor.view": "%s 的盔甲（查看模式）",
+  "container.slots-checker.ender.edit": "✎ %s 的末影箱（编辑模式）",
+  "container.slots-checker.ender.view": "%s 的末影箱（查看模式）",
+  "container.slots-checker.hotbar.edit": "✎ %s 的快捷栏（编辑模式）",
+  "container.slots-checker.hotbar.view": "%s 的快捷栏（查看模式）",
+  "container.slots-checker.inventory.edit": "✎ %s 的背包（编辑模式）",
+  "container.slots-checker.inventory.view": "%s 的背包（查看模式）",
+  "container.slots-checker.offhand.edit": "✎ %s 的副手（编辑模式）",
+  "container.slots-checker.offhand.view": "%s 的副手（查看模式）",
   "modmenu.descriptionTranslation.slots-checker": "管理员可以通过命令查看或编辑任意玩家的背包、快捷栏、末影箱、护甲以及副手格子。",
-
+  "modmenu.nameTranslation.slots-checker": "Slots Checker",
   "slots-checker.mcmod": "MC 百科"
 }
