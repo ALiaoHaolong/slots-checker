@@ -103,23 +103,23 @@ public class SlotsChecker implements ModInitializer {
         switch (slotType) {
             case "armor" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
                     (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 36), 1, target.getUuid(), slotType, readOnly),
-                    Text.translatable("container.armor_checker", target.getEntityName())
+                    Text.translatable(readOnly ? "container.slots-checker.armor.view" : "container.slots-checker.armor.edit", target.getEntityName())
             ));
             case "ender" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
                     (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, target.getEnderChestInventory(), 3, target.getUuid(), slotType, readOnly),
-                    Text.translatable("container.ender_checker", target.getEntityName())
+                    Text.translatable(readOnly ? "container.slots-checker.ender.view" : "container.slots-checker.ender.edit", target.getEntityName())
             ));
             case "hotbar" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
                     (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 0, 9), 1, target.getUuid(), slotType, readOnly),
-                    Text.translatable("container.hotbar_checker", target.getEntityName())
+                    Text.translatable(readOnly ? "container.slots-checker.hotbar.view" : "container.slots-checker.hotbar.edit", target.getEntityName())
             ));
             case "inventory" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
                     (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X3, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 27, 9, 36), 3, target.getUuid(), slotType, readOnly),
-                    Text.translatable("container.inventory_checker", target.getEntityName())
+                    Text.translatable(readOnly ? "container.slots-checker.inventory.view" : "container.slots-checker.inventory.edit", target.getEntityName())
             ));
             case "offhand" -> source.openHandledScreen(new SimpleNamedScreenHandlerFactory(
                     (syncId, inv, player) -> new SlotsCheckerScreenHandler(ScreenHandlerType.GENERIC_9X1, syncId, inv, new OffsetPlayerInventory(target.getInventory(), 9, 40, 41), 1, target.getUuid(), slotType, readOnly),
-                    Text.translatable("container.offhand_checker", target.getEntityName())
+                    Text.translatable(readOnly ? "container.slots-checker.offhand.view" : "container.slots-checker.offhand.edit", target.getEntityName())
             ));
         }
 
