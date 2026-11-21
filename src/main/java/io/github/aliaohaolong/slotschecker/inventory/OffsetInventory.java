@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pers.liaohaolong.slotschecker.inventory;
+package io.github.aliaohaolong.slotschecker.inventory;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;

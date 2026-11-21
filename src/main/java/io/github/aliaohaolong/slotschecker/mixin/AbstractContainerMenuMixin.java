@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pers.liaohaolong.slotschecker.mixin;
+package io.github.aliaohaolong.slotschecker.mixin;
 
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import pers.liaohaolong.slotschecker.screen.SlotsCheckerMenu;
+import io.github.aliaohaolong.slotschecker.screen.SlotsCheckerMenu;
 
 /**
  * <h3>AbstractContainerMenuMixin</h3>
