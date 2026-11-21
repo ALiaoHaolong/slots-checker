@@ -1,12 +1,15 @@
 {
-  "container.ender_checker": "%s 's Ender Chest",
-  "container.hotbar_checker": "%s 's Hotbar",
-  "container.inventory_checker": "%s 's Inventory",
-  "container.armor_checker": "%s 's Armor",
-  "container.offhand_checker": "%s 's Offhand",
-
-  "modmenu.nameTranslation.slots-checker": "Slots Checker",
+  "container.slots-checker.armor.edit": "✎ %s 's Armor (Edit Mode)",
+  "container.slots-checker.armor.view": "%s 's Armor (View Mode)",
+  "container.slots-checker.ender.edit": "✎ %s 's Ender Chest (Edit Mode)",
+  "container.slots-checker.ender.view": "%s 's Ender Chest (View Mode)",
+  "container.slots-checker.hotbar.edit": "✎ %s 's Hotbar (Edit Mode)",
+  "container.slots-checker.hotbar.view": "%s 's Hotbar (View Mode)",
+  "container.slots-checker.inventory.edit": "✎ %s 's Inventory (Edit Mode)",
+  "container.slots-checker.inventory.view": "%s 's Inventory (View Mode)",
+  "container.slots-checker.offhand.edit": "✎ %s 's Offhand (Edit Mode)",
+  "container.slots-checker.offhand.view": "%s 's Offhand (View Mode)",
   "modmenu.descriptionTranslation.slots-checker": "The admin can view or edit any player's inventory, hotbar, ender chest, armor, and offhand slots by command.",
-
+  "modmenu.nameTranslation.slots-checker": "Slots Checker",
   "slots-checker.mcmod": "MC 百科"
 }
