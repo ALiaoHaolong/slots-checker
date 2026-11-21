@@ -24,7 +24,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"pers.liaohaolong.slotschecker.SlotsChecker"
+			"io.github.aliaohaolong.slotschecker.SlotsChecker"
 		]
 	},
 	"mixins": [

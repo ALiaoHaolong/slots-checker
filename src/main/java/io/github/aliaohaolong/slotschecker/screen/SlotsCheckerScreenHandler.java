@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pers.liaohaolong.slotschecker.screen;
+package io.github.aliaohaolong.slotschecker.screen;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,8 +26,8 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.GameRules;
-import pers.liaohaolong.slotschecker.SlotsChecker;
-import pers.liaohaolong.slotschecker.inventory.OffsetPlayerInventory;
+import io.github.aliaohaolong.slotschecker.SlotsChecker;
+import io.github.aliaohaolong.slotschecker.inventory.OffsetPlayerInventory;
 
 import java.util.UUID;
 
