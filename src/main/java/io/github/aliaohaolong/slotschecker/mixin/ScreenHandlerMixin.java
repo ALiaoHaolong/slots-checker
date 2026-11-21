@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pers.liaohaolong.slotschecker.mixin;
+package io.github.aliaohaolong.slotschecker.mixin;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import pers.liaohaolong.slotschecker.screen.SlotsCheckerScreenHandler;
+import io.github.aliaohaolong.slotschecker.screen.SlotsCheckerScreenHandler;
 
 /**
  * <h3>ScreenHandlerMixin</h3>

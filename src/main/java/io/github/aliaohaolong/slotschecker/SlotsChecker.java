@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pers.liaohaolong.slotschecker;
+package io.github.aliaohaolong.slotschecker;
 
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -32,8 +32,8 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import pers.liaohaolong.slotschecker.inventory.OffsetPlayerInventory;
-import pers.liaohaolong.slotschecker.screen.SlotsCheckerScreenHandler;
+import io.github.aliaohaolong.slotschecker.inventory.OffsetPlayerInventory;
+import io.github.aliaohaolong.slotschecker.screen.SlotsCheckerScreenHandler;
 
 /**
  * <h3>SlotsChecker</h3>
