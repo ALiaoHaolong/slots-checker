@@ -102,23 +102,23 @@ public class SlotsChecker implements ModInitializer {
         switch (slotType) {
             case "armor" -> source.openMenu(new SimpleMenuProvider(
                     (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 40, 36), 1, target.getUUID(), slotType, readOnly),
-                    Component.translatable("container.armor_checker", target.getName())
+                    Component.translatable(readOnly ? "container.slots-checker.armor.view" : "container.slots-checker.armor.edit", target.getName())
             ));
             case "ender" -> source.openMenu(new SimpleMenuProvider(
                     (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x3, syncId, inv, target.getEnderChestInventory(), 3, target.getUUID(), slotType, readOnly),
-                    Component.translatable("container.ender_checker", target.getName())
+                    Component.translatable(readOnly ? "container.slots-checker.ender.view" : "container.slots-checker.ender.edit", target.getName())
             ));
             case "hotbar" -> source.openMenu(new SimpleMenuProvider(
                     (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 0, 9), 1, target.getUUID(), slotType, readOnly),
-                    Component.translatable("container.hotbar_checker", target.getName())
+                    Component.translatable(readOnly ? "container.slots-checker.hotbar.view" : "container.slots-checker.hotbar.edit", target.getName())
             ));
             case "inventory" -> source.openMenu(new SimpleMenuProvider(
                     (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x3, syncId, inv, new OffsetInventory(target.getInventory(), 27, 9, 36), 3, target.getUUID(), slotType, readOnly),
-                    Component.translatable("container.inventory_checker", target.getName())
+                    Component.translatable(readOnly ? "container.slots-checker.inventory.view" : "container.slots-checker.inventory.edit", target.getName())
             ));
             case "offhand" -> source.openMenu(new SimpleMenuProvider(
                     (syncId, inv, player) -> new SlotsCheckerMenu(MenuType.GENERIC_9x1, syncId, inv, new OffsetInventory(target.getInventory(), 9, 40, 41), 1, target.getUUID(), slotType, readOnly),
-                    Component.translatable("container.offhand_checker", target.getName())
+                    Component.translatable(readOnly ? "container.slots-checker.offhand.view" : "container.slots-checker.offhand.edit", target.getName())
             ));
         }
 
