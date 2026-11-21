@@ -67,10 +67,7 @@ public class SlotsChecker implements ModInitializer {
         ));
 
         ServerPlayerEvents.AFTER_RESPAWN.register(((oldPlayer, newPlayer, alive) -> {
-            // 获取服务器实例
-            MinecraftServer server = newPlayer.getEntityWorld().getServer();
             // 遍历玩家，判断有没有玩家正在观察当前玩家
-            assert server != null;
             server.getPlayerManager().getPlayerList().forEach(serverPlayerEntity -> {
                 // 如果该玩家是观察者
                 if (serverPlayerEntity.currentScreenHandler instanceof SlotsCheckerScreenHandler slotsCheckerScreenHandler)
