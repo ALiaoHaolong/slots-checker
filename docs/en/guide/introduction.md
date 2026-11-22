@@ -20,7 +20,7 @@ order: 0
 [![Homepage](https://img.shields.io/badge/HOMEPAGE-D0D5DA?style=for-the-badge)](https://aliaohaolong.github.io/slots-checker)
 [![Issues](https://img.shields.io/badge/ISSUES-D0D5DA?style=for-the-badge)](https://github.com/ALiaoHaolong/slots-checker/issues)
 
-**🌍 [English](/guide/introduction) • [简体中文](/zh/guide/introduction)**
+🌐 English | [简体中文](/zh/guide/introduction)
 
 </div>
 
