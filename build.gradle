@@ -22,9 +22,9 @@ modrinth {
         versionBundle "26.2", "26.3"
     }
     loaders = [ "fabric" ]
-    primaryFile = provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}.jar") }
+    primaryFile = provider { layout.projectDirectory.file("${project.mod_id}-fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}.jar") }
     additionalFiles {
-        sourcesJar provider { layout.projectDirectory.file("build/libs/${project.mod_id}-fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}-sources.jar") } as Provider<RegularFile>
+        sourcesJar provider { layout.projectDirectory.file("${project.mod_id}-fabric-${project.mod_version}-mc${ModrinthTask.getCurrentGameVersions(project).getFirst()}-sources.jar") } as Provider<RegularFile>
     }
     syncBodyFrom = providers.fileContents(layout.projectDirectory.file("Modrinth.md")).asText
 }
