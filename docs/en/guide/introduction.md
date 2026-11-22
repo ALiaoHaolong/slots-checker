@@ -26,7 +26,7 @@ order: 0
 
 ---
 
-This mod provides a command to view and modify any player's inventory, hotbar, ender chest, armor, and offhand slots (requires level 4 admin privileges).
+The admin can view or edit any player's inventory, hotbar, ender chest, armor, and offhand slots by command.
 
 When installed on the client, it provides in-game interface translations.
 
@@ -35,33 +35,59 @@ Supports en_us, zh_cn, zh_hk, and zh_tw languages.
 Important:
 
 - **Required on the server, optional on the client.**
-- For the time being, it is **not supported** to view or modify the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
-- [Creative inventory problem](/guide/creative-inventory-problem).
+- For the time being, it is **not supported** to view or edit the data of offline players (offline players refer to those who are not currently online, not to players who log in via offline mode).
+- [Creative inventory problem](/notices/creative-inventory-problem).
+- [Dying player inventory problem](/notices/dying-player-inventory-problem).
 
 ## Commands
 
-1. `/slots-checker inventory <player>`  
-   Open the player's inventory interface.  
-   <img src="/images/inventory.png" alt="Inventory" width="400"/>
+Grammar: `/slots-checker armor|ender|hotbar|inventory|offhand <player> [view|edit]`
 
-2. `/slots-checker hotbar <player>`  
-   Open the player's hotbar interface.  
-   <img src="/images/hotbar.png" alt="Hotbar" width="400"/>
+- `<player>` is a required parameter, specifying the target player to be operated on.
+- `[view|edit]` is an optional parameter, defaulting to `view` (view mode) when omitted. `view` (view mode) requires 2-level command permission, and `edit` (edit mode) requires 4-level command permission.
 
-3. `/slots-checker ender <player>`  
-   Open the player's ender chest interface.  
-   <img src="/images/ender.png" alt="Ender Chest" width="400"/>
+Examples:
 
-4. `/slots-checker armor <player>`  
-   Open the player's armor interface.  
-   The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.  
-   This interface has no item restrictions. Any item can be directly placed in the armor slot.  
-   <img src="/images/armor.png" alt="Armor" width="400"/>
+```command
+/slots-checker inventory foo       # Open foo's inventory in view mode
+/slots-checker ender foo view      # Open foo's ender chest in view mode
+/slots-checker inventory foo edit  # Open foo's inventory in edit mode
+```
 
-5. `/slots-checker offhand <player>`  
-   Open the player's offhand interface.  
-   The last 8 fields are invalid.  
-   <img src="/images/offhand.png" alt="Offhand" width="400"/>
+## In Action
+
+**View An_Night's armor**: `/slots-checker armor An_Night`
+
+- The first four columns are in sequence: helmets, chestplates, leggings, and boots. The last five fields are invalid.
+- This interface has no item restrictions. Any item can be directly placed in the armor slot.
+
+<img src="/images/armor-view.png" alt="Armor" width="400" style="border: 2px solid #000000; border-radius: 8px;"/>
+
+---
+
+**View An_Night's ender chest**: `/slots-checker ender An_Night`
+
+<img src="/images/ender-view.png" alt="Ender Chest" width="400" style="border: 2px solid #000000; border-radius: 8px;"/>
+
+---
+
+**View An_Night's hotbar**: `/slots-checker hotbar An_Night`
+
+<img src="/images/hotbar-view.png" alt="Hotbar" width="400" style="border: 2px solid #000000; border-radius: 8px;"/>
+
+---
+
+**Edit An_Night's inventory**: `/slots-checker inventory An_Night edit`
+
+<img src="/images/inventory-edit.png" alt="Inventory" width="400" style="border: 2px solid #000000; border-radius: 8px;"/>
+
+---
+
+**Edit An_Night's offhand**: `/slots-checker offhand An_Night edit`
+
+- The last 8 fields are invalid.
+
+<img src="/images/offhand-edit.png" alt="Offhand" width="400" style="border: 2px solid #000000; border-radius: 8px;"/>
 
 ## License
 

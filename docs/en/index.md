@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Slots Checker
   text: What's in their inventory?
-  tagline: An admin mod to view and modify any player's inventory in real time. 😇
+  tagline: An admin mod to view and edit any player's inventory in real time. 😇
   image:
     src: /icon@3x.png
     alt: Slots Checker

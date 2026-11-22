@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Slots Checker
   text: 他们的物品栏里有什么？
-  tagline: 一款可以实时查看并修改任意玩家的物品栏的管理员模组。😇
+  tagline: 一款可以实时查看并编辑任意玩家的物品栏的管理员模组。😇
   image:
     src: /icon@3x.png
     alt: Slots Checker
