@@ -1,0 +1,31 @@
+name: Sync Modrinth Body
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/sync-modrinth-body.yml'
+      - 'Modrinth.md'
+
+  # 允许从 Actions 选项卡手动运行此工作流程
+  workflow_dispatch:
+
+concurrency:
+  group: sync-modrinth-body
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    env:
+      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+      - run: ./gradlew modrinthSyncBody --console=plain
